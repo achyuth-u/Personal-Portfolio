@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Achyuth Unni - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#graphic-design">Graphic Design</a></li>
+                <li><a href="#contact-info">Contact</a></li>
+                <li><a href="files/Resume_Achyuth.pdf" download>Download Resume</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <div class="container">
+            <h1>Achyuth Unni</h1>
+            <div class="photo-container">
+                <img src="images/photo.jpg" alt="Achyuth Unni" class="profile-photo">
+            </div>
+            <p>Hello! I'm Achyuth Unni, a passionate Computer Science Engineer with a keen interest in web development, data analytics, and graphic design. I love creating impactful solutions that bridge the gap between technology and user experience. My journey has been one of continuous learning, driven by curiosity and a desire to make a difference through innovative projects.</p>
+            <p>With a strong foundation in both frontend and backend development, I thrive on turning ideas into reality. Whether it's designing a seamless user interface or optimizing backend systems for efficiency, I'm dedicated to delivering excellence in every project I undertake.</p>
+            <p>Beyond coding, I have a flair for graphic design and UI/UX, ensuring that my projects are not only functional but also visually appealing. I believe in the power of technology to transform lives, and I'm excited to contribute my skills to impactful and meaningful endeavors.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2>Skills</h2>
+            <div class="skill-bar">
+                <div class="skill">
+                    <p>HTML</p>
+                    <div class="bar">
+                        <div class="progress html"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>CSS</p>
+                    <div class="bar">
+                        <div class="progress css"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>JavaScript</p>
+                    <div class="bar">
+                        <div class="progress js"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Programming</p>
+                    <div class="bar">
+                        <div class="progress programming"></div>
+                    </div>
+                </div>
+                <div class="skill">
+                    <p>Graphic Designing</p>
+                    <div class="bar">
+                        <div class="progress graphic-designing"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            
+            <div class="project">
+                <div class="project-title" onclick="toggleDetails('project1-details')">EduAR</div>
+                <div id="project1-details" class="project-details">
+                    <p><strong><i>Overview :</strong></i> 
+                    <p>EduAR is an Augmented Reality app that brings textbook content to life, transforming images into interactive 3D models to enhance education.</p><br>
+                    <p><strong><i>Key Features:</strong></i></p>
+                    <ul>
+                        <li>Scans textbook images and displays corresponding 3D models.</li>
+                        <li>Interactive animations for better understanding of complex concepts.</li>
+                        <li>Intuitive UI designed for educational purposes.</li><br>
+                    </ul>
+                    <p><strong><i>Technologies Used:</strong></i> 
+                    <p>Unity Game Engine, C#, Blender, Adobe Illustrator, Google AR Foundation.</p><br>
+                    <p><strong><i>Role and Contributions:</strong></i></p>
+                    <ul>
+                        <li><i>3D Modeling and Labeling:</o> Created detailed 3D models in Blender.</li>
+                        <li><i>Animations:</i> Developed animations to enhance educational content.</li>
+                        <li><i>UI Design:</i> Designed the app’s user interface for ease of use.</li><br>
+                    </ul>
+                    <p><strong><i>Impact:</strong></i> 
+                    <p>Received positive feedback for making learning more engaging and accessible.</p>
+                </div>
+            </div>
+            
+            <div class="project">
+                <div class="project-title" onclick="toggleDetails('project2-details')">Property Rental Portal</div>
+                <div id="project2-details" class="project-details">
+                    <p><strong><i>Overview:</strong></i>
+                    <p>A web platform designed to streamline the process of renting and selling residential properties.</p><br>
+                    <p><strong><i>Key Features:</strong></i></p>
+                    <ul>
+                        <li>Advanced search options with filters for location, price, and property type.</li>
+                        <li>Secure login and user management system.</li>
+                        <li>Messaging system for direct communication between parties.</li><br>
+                    </ul>
+                    <p><strong><i>Technologies Used:</strong></i>
+                    <p>HTML, PHP, JavaScript, MySQL, XAMPP.</p><br>
+                    <p><strong><i>Role and Contributions:</strong></i></p>
+                    <ul>
+                        <li><i>Design Optimization: &nbsp;</i>Tweaked the design for better user experience.</li>
+                        <li><i>Code Optimization: &nbsp;</i>Improved backend code for faster performance.</li>
+                        <li><i>Database Management: &nbsp;</i>Managed MySQL database for efficient handling of property listings.</li><br>
+                    </ul>
+                    <p><strong><i>Impact:</strong></i>
+                    <p>Enhanced user satisfaction through optimized design and code, leading to a smoother property transaction process.</p>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+    
+    <script>
+    function toggleDetails(id) {
+        var details = document.getElementById(id);
+        if (details.style.display === "none" || details.style.display === "") {
+            details.style.display = "block";
+        } else {
+            details.style.display = "none";
+        }
+    }
+    </script>
+    
+
+    <section id="graphic-design">
+        <div class="container">
+            <h2>Graphic Design</h2>
+            <p>Explore some of my graphic design works below:</p><br>
+            <div class="gallery">
+                <img src="images/F4.png" alt="Graphic Design 1">
+                <img src="images/the ny.png" alt="Graphic Design 2">
+                <img src="images/Melam.jpg" alt="Graphic Design 3">
+            </div>
+        </div>
+    </section>
+
+    <section id="contact-info">
+    <footer>
+        <div class="container">
+            <h2>Contact Me:</h2>
+            <div class="social-media">
+                <a href="https://www.facebook.com/achyuth.unni.7" target="_blank" aria-label="Facebook"><img src="images/facebook-icon.png" alt="Facebook"></a>
+                <a href="https://www.instagram.com/ach_yuth._/" target="_blank" aria-label="Instagram"><img src="images/instagram-icon.png" alt="Instagram"></a>
+                <a href="https://x.com/AchyuthUnni" target="_blank" aria-label="Twitter"><img src="images/x-icon.jpg" alt="Twitter"></a>
+                <a href="https://www.linkedin.com/in/achyuth-unni/" target="_blank" aria-label="LinkedIn"><img src="images/LinkedIn-icon.png" alt="LinkedIn"></a>
+                <a href="mailto:achyuthunni@gmail.com" target="_blank" aria-label="E-Mail"><img src="images/GMail-icon.png" alt="E-Mail"></a>
+            </div>
+        </div>
+        <p>&copy; 2024 Achyuth Unni. All rights reserved.</p>
+    </footer>
+    </section>
+
+    <script>
+        function toggleDetails(id) {
+            const details = document.getElementById(id);
+            if (details.classList.contains('show')) {
+                details.classList.remove('show');
+            } else {
+                details.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
