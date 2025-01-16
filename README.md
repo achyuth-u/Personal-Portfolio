@@ -24,9 +24,10 @@ This repository contains the code for my personal portfolio website, built using
 
 1. **About**: Introduction to who I am, my background in Computer Science, and my passion for web development and graphic design.
 2. **Skills**: Displays a histogram-style overview of my technical skills including HTML, CSS, JavaScript, programming, and graphic design.
-3. **Projects**: Showcases key projects such as "EduAR" and "Property Rental Portal," with detailed descriptions and technologies used.
-4. **Graphic Design**: A gallery of selected graphic design works.
-5. **Contact**: Contact information and social media links.
+3. **Projects**: Showcases key projects with detailed descriptions and technologies used.
+4. **Professional Experience**: Shows detailed descriptions of work experiences.
+5. **Graphic Design**: A gallery of selected graphic design works.
+6. **Contact**: Contact information and social media links.
 
 ## Getting Started
 
