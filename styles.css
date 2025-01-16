@@ -1,0 +1,466 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body, p, a, li, h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    background: url('images/peakpx.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: #e0e0e0;
+    line-height: 1.8;
+    padding: 20px;
+}
+
+
+header {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center; /* Centers the content horizontally */
+    align-items: center; /* Ensures vertical centering */
+}
+
+header a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header a:hover {
+    color: #77aaff;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center; /* Centers the navigation items */
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    margin: 0 30px; /* Increased margin between items */
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px; /* Increased font size */
+    transition: font-size 0.3s ease; /* Smooth transition for hover effect */
+}
+
+nav ul li a:hover {
+    font-size: 20px; /* Optional: Increases size on hover for effect */
+}
+
+
+
+section {
+    margin-bottom: 40px;
+}
+
+h1 {
+    font-size: 48px; /* Large font size in pixels */
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: #e0e0e0;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.photo-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.profile-photo {
+    display: inline-block;
+    max-width: 100%; /* Ensures image scales with container */
+    max-height: 200px; /* Set a limit for the height */
+    border-radius: 8px; /* Slight rounding for a professional look */
+    transition: transform 0.3s ease;
+}
+
+.profile-photo:hover {
+    transform: scale(1.05); /* Subtle zoom effect on hover */
+}
+
+
+#about .container {
+    max-width:800px;
+    margin: 0 auto;
+}
+
+#about p {
+    text-align: justify;
+    padding: 0 20px;
+    margin-bottom: 20px;
+    line-height: 1.6;
+}
+
+.skill-bar {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.skill {
+    position: relative;
+    margin-bottom: 15px;
+}
+
+.skill p {
+    margin: 0;
+    font-weight: 500;
+}
+
+.bar {
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 5px;
+    height: 20px;
+}
+
+.progress {
+    height: 100%;
+    background-color: #089add;
+    border-radius: 5px;
+    position: relative;
+    width: 0%;  /* Initially set to 0 width */
+}
+
+.progress::after {
+    content: attr(data-progress);
+    position: absolute;
+    top: -25px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.skill:hover .progress::after {
+    opacity: 1;
+}
+
+.skill:hover .progress {
+    width: attr(data-progress); /* Set width to the data-progress attribute */
+}
+
+/* Add the specific percentage data for each progress bar */
+.html { width: 75%; }
+.css { width: 65%; }
+.js { width: 50%; }
+.programming { width: 80%; }
+.graphic-designing { width: 85%; }
+
+
+/* Layout for the projects */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* Adjust spacing between the project tiles */
+    padding: 20px;
+}
+
+/* Layout for the projects */
+.project-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px; /* Adjust spacing between the project tiles */
+    padding: 20px;
+}
+
+.project-title {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.project-title:hover {
+    background-color: rgba(0, 68, 204, 0.1);
+}
+
+.project-details {
+    display: none;
+    max-width: 800px;
+    margin: 10px auto;
+    padding: 30px; /* Increased padding for more space */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    border-radius: 8px; /* Slightly rounded corners for a softer look */
+    border-left: 3px solid #000;
+    line-height: 1.6; /* Adjust line height for better readability */
+}
+
+.project-details.show {
+    display: block;
+}
+
+ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+ul li {
+    margin-bottom: 8px; /* Adds spacing between list items */
+}
+
+.experience {
+    margin-bottom: 20px;
+}
+
+.experience-title {
+    color: white;
+    text-align: left;
+    padding: 15px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: medium;
+    transition: color 0.3s ease;
+}
+
+.experience-title:hover {
+    color: #007bff;  /* Blue color on hover */
+}
+
+.experience-details {
+    display: none;
+    text-align: justify;
+    padding: 15px;
+    color: white;
+}
+
+.experience-details.show {
+    display: block;
+}
+
+.experience-details ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.experience-details li {
+    margin-bottom: 10px;
+}
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two equal-width columns */
+    gap: 25px;
+    padding: 25px;
+    max-width: 1100px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+
+.gallery a {
+    display: block;
+    width: 100%;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    height: auto; /* Let the image size adjust properly */
+}
+
+.gallery img {
+    width: 100%;
+    height: auto; /* Maintains the aspect ratio of images */
+    max-width: 100%; /* Ensures image stays within its container */
+    object-fit: contain; /* Ensures the entire image fits within the box without distortion */
+    border-radius: 8px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .gallery {
+        grid-template-columns: 1fr; /* Single column layout on mobile */
+        gap: 20px;
+        padding: 15px;
+    }
+}
+
+/* Tablet responsiveness */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .gallery {
+        grid-template-columns: repeat(2, 1fr); /* Ensure 2 columns for tablet */
+        gap: 20px;
+        padding: 20px;
+    }
+}
+
+/* Optional: Add more responsive breakpoints if needed */
+
+
+
+#scrollToTop {
+    display: none;
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: #1a1a1a;
+    color: white;
+    cursor: pointer;
+    padding: 20px;
+    border-radius: 50%;
+    font-size: 24px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    transform: scale(1);
+}
+
+#scrollToTop:hover {
+    background-color: #333;
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.4);
+    animation: bounce 0.5s ease infinite;
+}
+
+#scrollToTop:active {
+    transform: scale(1.05);
+}
+
+@keyframes bounce {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+#scrollToTop.show {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+footer {
+    background-color: #1a1a1a;
+    color: #e0e0e0;
+    text-align: center;
+    padding: 20px 30px;
+    margin-top: 40px;
+    font-size: 1em;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+footer:hover {
+    background-color: #333;
+    transform: translateY(-5px);
+}
+
+footer h2 {
+    margin-bottom: 15px;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+footer .contact-info {
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+footer .contact-info li {
+    margin: 5px 0;
+}
+
+footer .social-media {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+footer .social-media a {
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+}
+
+footer .social-media a:hover {
+    transform: scale(1.1);
+}
+
+footer .social-media img {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    opacity: 0.8;
+    transition: opacity 0.3s ease-in-out;
+}
+
+footer .social-media img:hover {
+    opacity: 1;
+}
+
+footer p {
+    margin-top: 15px;
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    color: #b3b3b3;
+}
+
+
+
+@media (max-width: 768px) {
+    .gallery img {
+        width: 45%;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery img {
+        width: 100%;
+    }
+}
