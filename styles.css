@@ -166,6 +166,7 @@ h2 {
 .programming { width: 80%; }
 .graphic-designing { width: 85%; }
 
+/* Project container */
 .project-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -173,6 +174,7 @@ h2 {
     padding: 20px;
 }
 
+/* Project title styling */
 .project-title {
     background-color: #333;
     color: #fff;
@@ -183,12 +185,18 @@ h2 {
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: background-color 0.3s;
+    position: sticky; /* Keeps the title sticky */
+    top: 0; /* Aligns the title to the top of the project details */
+    z-index: 10; /* Makes sure the title is above other content */
+    background-color: #333; /* Maintains the background color when sticky */
+    border-radius: 8px 8px 0 0; /* Rounded corners only at the top */
 }
 
 .project-title:hover {
     background-color: rgba(0, 68, 204, 0.1);
 }
 
+/* Project details styling */
 .project-details {
     display: none;
     max-width: 800px;
@@ -199,10 +207,26 @@ h2 {
     border-radius: 8px;
     border-left: 3px solid #000;
     line-height: 1.6;
+    overflow-y: auto; /* Makes the details scrollable */
+    max-height: 400px; /* Sets a max height to make the details box scrollable */
 }
 
 .project-details.show {
     display: block;
+}
+
+ul {
+    padding-left: 20px;
+    margin-top: 10px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+strong {
+    font-weight: bold;
+    font-size: 1.1em;
 }
 
 ul {
