@@ -579,3 +579,80 @@ img {
     max-width: 100%;
     height: auto;
 }
+
+/* iOS devices specific optimizations */
+@supports (-webkit-touch-callout: none) {
+    /* Fix background attachment for iOS */
+    body {
+        background-attachment: scroll;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Optimize animations */
+    .profile-photo,
+    .gallery img,
+    .project-title,
+    footer,
+    #scrollToTop,
+    nav ul li a {
+        transition: none;
+    }
+
+    /* Disable problematic hover effects */
+    .profile-photo:hover,
+    .gallery img:hover,
+    footer:hover {
+        transform: none;
+    }
+
+    /* Optimize scrolling */
+    .project-container,
+    .gallery,
+    #about .container {
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* Reduce animation complexity */
+    #scrollToTop:hover {
+        animation: none;
+        transform: none;
+    }
+
+    #scrollToTop.show {
+        animation: none;
+    }
+}
+
+/* iOS-specific media queries */
+/* iPhone Pro Max */
+@media screen and (device-width: 428px) and (device-height: 926px) {
+    body {
+        padding: 10px 5px;
+    }
+    
+    .project-container,
+    .gallery {
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/* iPad */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (-webkit-min-device-pixel-ratio: 2) {
+    .project-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* iPad Pro */
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) and (-webkit-min-device-pixel-ratio: 2) {
+    .container {
+        width: 95%;
+    }
+}
