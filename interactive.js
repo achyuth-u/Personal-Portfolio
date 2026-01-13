@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-// 2. Typing Effect Logic
-    const words = ["FRONTEND DEVELOPER", "GRAPHIC DESIGNER", "CREATIVE DESIGNER"]; // Updated list
+    // 2. Typing Effect Logic
+    const words = ["FRONTEND DEVELOPER", "GRAPHIC DESIGNER", "CREATIVE DESIGNER"];
     let wordIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
@@ -29,9 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
             charIdx++;
         }
 
-        // Optional: I slightly lowered the typing speed (150 -> 100) 
-        // because "Frontend Developer" is longer than "Design".
-        let speed = isDeleting ? 50 : 100; 
+        let speed = isDeleting ? 50 : 100;
 
         if (!isDeleting && charIdx === currentWord.length) {
             speed = 2000; // Pause at end
@@ -66,14 +64,13 @@ document.addEventListener('DOMContentLoaded', () => {
             const card = trigger.parentElement;
             const isActive = card.classList.contains('active');
             
-            // Optional: Close other accordions in the same bento-grid
+            // Close other accordions in the same bento-grid
             const parentGrid = card.closest('.bento-grid');
             if(parentGrid) {
                 parentGrid.querySelectorAll('.acc-card').forEach(otherCard => {
                     if (otherCard !== card) otherCard.classList.remove('active');
                 });
             }
-
             card.classList.toggle('active');
         });
     });
@@ -104,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.opacity = "0";
         el.style.transform = "translateY(20px)";
         el.style.transition = "all 0.6s cubic-bezier(0.2, 1, 0.3, 1)";
-    observer.observe(el);
+        observer.observe(el);
     });
 
     // Re-initialize Lucide for dynamic icon swaps
@@ -150,5 +147,4 @@ document.addEventListener('keydown', (e) => {
         if (e.key === "ArrowLeft") changeImage(-1);
         if (e.key === "Escape") closeLightbox();
     }
-
 });
