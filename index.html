@@ -3,570 +3,251 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achyuth Unni - Portfolio</title>
-    
-    <!-- Resource hints for performance -->
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
-    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="styles.css" as="style">
-    
-    <!-- Stylesheets -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="critical-fixes.css">
+    <title>Achyuth Unni | Visual Engineering</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    
-    <!-- Preload critical resources -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js" as="script">
-    
-    <!-- Critical preloading script for fast initial rendering -->
-    <script>
-        // Force-display critical elements as soon as possible
-        (function() {
-            // Create a style element
-            var style = document.createElement('style');
-            style.innerHTML = `
-                body, section, header, .container, #particles-js {
-                    display: block !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                }
-                
-                /* Prevent flash of unstyled content */
-                .container {
-                    background-color: rgba(30, 30, 30, 0.8);
-                    color: #e0e0e0;
-                }
-                
-                /* Light theme detection */
-                @media (prefers-color-scheme: light) {
-                    .container {
-                        background-color: rgba(255, 255, 255, 0.8);
-                        color: #333333;
-                    }
-                }
-            `;
-            
-            // Append to head
-            document.head.appendChild(style);
-            
-            // Set theme as early as possible
-            var prefersDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var savedTheme = localStorage.getItem('theme');
-            
-            if (savedTheme === 'light' || (!savedTheme && !prefersDarkMode)) {
-                document.body.classList.add('light-theme');
-            }
-            
-            // Handle page visibility
-            document.addEventListener('visibilitychange', function() {
-                if (document.visibilityState === 'visible') {
-                    // Force repaint to fix any rendering issues
-                    document.body.style.display = 'none';
-                    setTimeout(function() {
-                        document.body.style.display = '';
-                    }, 0);
-                }
-            });
-        })();
-    </script>
+    <!-- Lucide Icons Library -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 </head>
-<body>
-    <!-- Animated Background -->
-    <div id="particles-js"></div>
-    
-    <!-- Theme Toggle Button -->
-    <div class="theme-toggle-container">
-        <label class="theme-toggle" for="theme-switch">
-            <input type="checkbox" id="theme-switch">
-            <div class="slider">
-                <div class="theme-icon">
-                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line>
-                        <line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line>
-                        <line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </div>
-            </div>
-        </label>
-    </div>
+<body class="dark">
+    <div class="bg-pattern"></div>
+    <div class="grain"></div>
 
-    <header class="glass-effect">
-        <nav>
-            <ul>
-                <li><a href="#about" class="gradient-border">About</a></li>
-                <li><a href="#skills" class="gradient-border">Skills</a></li>
-                <li><a href="#projects" class="gradient-border">Projects</a></li>
-                <li><a href="#professional-experience" class="gradient-border">Experience</a></li>
-                <li><a href="#graphic-design" class="gradient-border">Graphic Design</a></li>
-                <li><a href="#contact-info" class="gradient-border">Contact</a></li>
-                <li><a href="files/Resume_Achyuth.pdf" download class="gradient-border download-resume pulse-animation">Resume</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <section id="about" class="animate-on-scroll" data-animation="fade-up">
-        <div class="container glass-effect">
-            <h1>ACHYUTH UNNI</h1>
-            <h2 class="typing-text">I'm a <span id="typing-element"></span></h2>
-            <div class="photo-container hover-scale">
-                <img src="images/photo.jpg" alt="Achyuth Unni" class="profile-photo">
-            </div>
-            <div class="about-content">
-                <p>Hello there! 👋 I'm <strong>Achyuth Unni</strong>, a Computer Science Engineer with a passion for bringing ideas to life through code and design. My journey in tech began with a simple curiosity about how things work, and has evolved into a mission to create digital experiences that are both functional and visually captivating.</p>
-                
-                <p>I find joy in the perfect balance between logic and creativity. Whether I'm architecting the backbone of a web application, designing an intuitive user interface, or bringing textbooks to life through augmented reality, I'm always seeking that sweet spot where technology meets human experience. My work in AR education has even led to a published paper at the IEEE RAICS 2024 conference!</p>
-                
-                <p>When I'm not coding or designing, you might find me exploring new design trends, experimenting with 3D modeling, or brainstorming my next creative project. I believe that technology should be accessible, intuitive, and maybe even a little magical – and I'm excited to be part of making that happen.</p>
-                
-                <p>I'm always open to new opportunities, collaborations, and conversations about how we can use technology to make a positive impact. Let's build something amazing together!</p>
+    <nav class="nav-capsule">
+        <div class="nav-inner">
+            <div class="brand">ACHYUTH UNNI<span>.</span></div>
+                <ul class="nav-links">
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#projects">Work</a></li>
+                    <li><a href="#credentials">Credentials</a></li> <!-- Added this -->
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            <div class="nav-actions">
+                <button id="theme-toggle"><i data-lucide="sun"></i></button>
+                <a href="files/Resume_Achyuth.pdf" class="btn-cv" download>CV</a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <section id="skills" class="animate-on-scroll" data-animation="fade-up">
-        <div class="container glass-effect">
-            <h2>Skills</h2>
-            <div class="skill-bar">
-                <div class="skill">
-                    <div class="skill-info">
-                        <p>HTML</p>
-                        <span>75%</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress html" data-progress="75%"></div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="skill-info">
-                        <p>CSS</p>
-                        <span>65%</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress css" data-progress="65%"></div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="skill-info">
-                        <p>JavaScript</p>
-                        <span>50%</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress js" data-progress="50%"></div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="skill-info">
-                        <p>Programming</p>
-                        <span>80%</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress programming" data-progress="80%"></div>
-                    </div>
-                </div>
-                <div class="skill">
-                    <div class="skill-info">
-                        <p>Graphic Designing</p>
-                        <span>85%</span>
-                    </div>
-                    <div class="bar">
-                        <div class="progress graphic-designing" data-progress="85%"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <section id="projects" class="animate-on-scroll" data-animation="fade-up">
-        <div class="container glass-effect">
-            <h2>Projects</h2>
-            
-            <div class="project-container">
-                <!-- Project 1 -->
-                <div class="project-card animate-on-scroll" data-animation="fade-up">
-                    <h3>Personal Portfolio Website</h3>
-                    <div class="card-icon">💻</div>
-                    <div class="card-content">
-                        <h4>Overview</h4>
-                        <p>The Personal Portfolio Website serves as a dynamic digital platform that showcases personal projects, skills, and achievements, providing a professional online presence.</p>
-                        
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Highlights personal projects, skills, and contact details through interactive sections.</li>
-                            <li>Smooth navigation and responsive design for seamless user experience.</li>
-                            <li>Project showcase with clickable details and images for better visualization.</li>
-                        </ul>
-                        
-                        <h4>Technologies Used</h4>
-                        <p>HTML, CSS, JavaScript</p>
-                    </div>
-                </div>
+    <main class="wrapper">
+        <header class="hero">
+            <h1>VISUAL<br><span class="gradient-text" id="typing-text"></span><span class="cursor">|</span></h1>
+            <p>Computer Science Engineer // Full Stack Developer // Graphic Designer</p>
+        </header>
 
-                <!-- Project 2 -->
-                <div class="project-card animate-on-scroll" data-animation="fade-up">
-                    <h3>Event Management System</h3>
-                    <div class="card-icon">📆</div>
-                    <div class="card-content">
-                        <h4>Overview</h4>
-                        <p>The Event Management System is a user-friendly platform designed to simplify event registration and management, offering a smooth and responsive interface for users.</p>
-                        
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Interactive event registration form for easy data collection.</li>
-                            <li>Light/dark mode toggle for a personalized and adaptable user experience.</li>
-                            <li>Responsive layout ensuring optimal functionality across desktop and mobile devices.</li>
-                        </ul>
-                        
-                        <h4>Technologies Used</h4>
-                        <p>HTML, CSS, JavaScript</p>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card animate-on-scroll" data-animation="fade-up">
-                    <h3>EduAR: An AR Education App</h3>
-                    <div class="card-icon">🔍</div>
-                    <div class="card-content">
-                        <h4>Overview</h4>
-                        <p>EduAR is an Augmented Reality app that brings textbook content to life, transforming images into interactive 3D models to enhance education.</p>
-                        
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Scans textbook images and displays corresponding 3D models.</li>
-                            <li>Interactive animations for better understanding of complex concepts.</li>
-                            <li>Intuitive UI designed for educational purposes.</li>
-                        </ul>
-                        
-                        <h4>Technologies Used</h4>
-                        <p>Unity Game Engine, C#, Blender, Adobe Illustrator, Google AR Foundation</p>
-                    </div>
-                </div>
-
-                <!-- Project 4 -->
-                <div class="project-card animate-on-scroll" data-animation="fade-up">
-                    <h3>Property Rental Portal</h3>
-                    <div class="card-icon">🏠</div>
-                    <div class="card-content">
-                        <h4>Overview</h4>
-                        <p>A web platform designed to streamline the process of renting and selling residential properties.</p>
-                        
-                        <h4>Key Features</h4>
-                        <ul>
-                            <li>Advanced search options with filters for location, price, and property type.</li>
-                            <li>Secure login and user management system.</li>
-                            <li>Messaging system for direct communication between parties.</li>
-                        </ul>
-                        
-                        <h4>Technologies Used</h4>
-                        <p>HTML, PHP, JavaScript, MySQL, XAMPP</p>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Project Details Modals (Hidden by default) -->
-            <div id="project1-details" class="project-details glass-effect">
-                <p><strong>Overview:</strong></p>
-                The Personal Portfolio Website serves as a dynamic digital platform that showcases personal projects, skills, and achievements, providing a professional online presence.<br><br>
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Highlights personal projects, skills, and contact details through interactive sections.</li>
-                    <li>Smooth navigation and responsive design for seamless user experience.</li>
-                    <li>Project showcase with clickable details and images for better visualization.</li><br>
-                </ul>
-                <p><strong>Technologies Used:</strong></p> 
-                HTML, CSS, JavaScript.
-            </div>
-            
-            <div id="project2-details" class="project-details glass-effect">
-                <p><strong>Overview:</strong></p> 
-                The Event Management System is a user-friendly platform designed to simplify event registration and management, offering a smooth and responsive interface for users.<br><br>
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Interactive event registration form for easy data collection.</li>
-                    <li>Light/dark mode toggle for a personalized and adaptable user experience.</li>
-                    <li>Responsive layout ensuring optimal functionality across desktop and mobile devices.</li><br>
-                </ul>
-                <p><strong>Technologies Used:</strong></p> 
-                HTML, CSS, JavaScript.
-            </div>
-            
-            <div id="project3-details" class="project-details glass-effect">
-                <p><strong>Overview:</strong></p> 
-                EduAR is an Augmented Reality app that brings textbook content to life, transforming images into interactive 3D models to enhance education.<br><br>
-                <p><strong>Presentation and Publication:</strong></p> 
-                Presented and published a survey paper on "AR Based Education App" at the 6th International Conference on Recent Advances in Intelligent Computational Systems (RAICS 2024) conducted by IEEE, at Mar Athanasius College, Kothamangalam, Kerala.<br><br>
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Scans textbook images and displays corresponding 3D models.</li>
-                    <li>Interactive animations for better understanding of complex concepts.</li>
-                    <li>Intuitive UI designed for educational purposes.</li><br>
-                </ul>
-                <p><strong>Project Links:</strong></p>
-                <ul>
-                    <li>Paper Available on IEEE Xplore: 
-                        <a href="https://ieeexplore.ieee.org/document/10690081" target="_blank">IEEE Xplore</a>
-                    </li>
-                    <li>Project Repository: 
-                        <a href="https://github.com/achyuth-u/EduAR" target="_blank">EduAR Repository</a>
-                    </li><br>
-                    
-                <p><strong>Technologies Used:</strong></p>
-                Unity Game Engine, C#, Blender, Adobe Illustrator, Google AR Foundation.</p><br>
-                <p><strong>Role and Contributions:</strong></p>
-                <ul>
-                    <li><i>3D Modeling and Labeling:</i> Created detailed 3D models in Blender.</li>
-                    <li><i>Animations:</i> Developed animations to enhance educational content.</li>
-                    <li><i>UI Design:</i> Designed the app's user interface for ease of use.</li>
-                </ul>
-            </div>
-            
-            <div id="project4-details" class="project-details glass-effect">
-                <p><strong>Overview:</strong></p>
-                A web platform designed to streamline the process of renting and selling residential properties.</p><br>
-                <p><strong>Key Features:</strong></p>
-                <ul>
-                    <li>Advanced search options with filters for location, price, and property type.</li>
-                    <li>Secure login and user management system.</li>
-                    <li>Messaging system for direct communication between parties.</li><br>
-                </ul>
-                <p><strong>Technologies Used:</strong></p>
-                HTML, PHP, JavaScript, MySQL, XAMPP.</p><br>
-                <p><strong>Role and Contributions:</strong></p>
-                <ul>
-                    <li><i>Design Optimization:</i> Tweaked the design for better user experience.</li>
-                    <li><i>Code Optimization:</i> Improved backend code for faster performance.</li>
-                    <li><i>Database Management:</i> Managed MySQL database for efficient handling of property listings.</li>
-                </ul>
-            </div>
-        </div>
-    </section>
-
-    <section id="professional-experience" class="animate-on-scroll" data-animation="fade-up">
-        <div class="container glass-effect">
-            <h2>Professional Experience</h2>
-            
-            <div class="timeline">
-                <div class="timeline-item animate-on-scroll" data-animation="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">September 2024</div>
-                    <div class="timeline-content glass-effect">
-                        <h3>Graphic Designer</h3>
-                        <h4>Kerala State Science & Technology Museum, Thiruvananthapuram</h4>
-                        <div class="timeline-details">
-                            <ul>
-                                <li>Contributed to a two-week graphic design project for the Computer Artifacts Museum and Gallery under the Government of Kerala, through Interactive Museum Consultants (IMC).</li>
-                                <li>Designed and developed various materials such as posters, descriptions, and exhibit labels as part of the government's 100-day action plan, showcasing key milestones in Indian computing history.</li>
-                                <li>Collaborated with curators and museum staff to ensure accuracy and engagement for the audience.</li>
-                                <li>Assisted in the design of an interactive display that provided a visually engaging experience for visitors.</li>
-                            </ul>
+        <!-- 01 // EXPERIENCE -->
+        <section id="experience" class="section">
+            <h2 class="section-label">01 // EXPERIENCE</h2>
+            <div class="bento-grid">
+                <div class="acc-card bento-wide">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="briefcase" class="icon-accent"></i>
+                            <h3>Full Stack Developer & Graphic Designer</h3>
+                            <p>Interactive Museum Consultants</p>
                         </div>
+                        <div class="acc-status"><span>JUL 2025 — Present</span> <i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding"><p>Contributed to the development of interactive kiosks and high-resolution gallery assets, optimizing performance and ensuring seamless digital-physical integration for large-scale public exhibitions.</p></div>
                     </div>
                 </div>
-                
-                <div class="timeline-item animate-on-scroll" data-animation="fade-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">August 2024</div>
-                    <div class="timeline-content glass-effect">
-                        <h3>Web Development Intern (Online)</h3>
-                        <h4>Cipherbytes Technologies, Kolkata, West Bengal</h4>
-                        <div class="timeline-details">
-                            <ul>
-                                <li>Developed portfolio and event management websites remotely using HTML, CSS, and JavaScript, ensuring smooth functionality across different browsers.</li>
-                                <li>Focused on designing responsive layouts to optimize the user experience across various devices, enhancing accessibility.</li>
-                                <li>Created interactive user interfaces (UIs) that improved user engagement and contributed to the overall success of the websites.</li>
-                                <li>Participated in code reviews and collaborated with senior developers to optimize and debug code for improved performance.</li>
-                            </ul>
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="globe" class="icon-accent"></i>
+                            <h3>Graphic Design Intern</h3>
+                            <p>JIITAK Inc. | Japanese Team</p>
                         </div>
+                        <div class="acc-status"><span>MAR 2025 - JUL 2025</span> <i data-lucide="chevron-down"></i></div>
                     </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll" data-animation="fade-right">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2023</div>
-                    <div class="timeline-content glass-effect">
-                        <h3>Digital Marketing Intern</h3>
-                        <h4>Techmindz, Ernakulam, Kerala</h4>
-                        <div class="timeline-details">
-                            <ul>
-                                <li>Assisted in managing and optimizing digital marketing campaigns across platforms like Google Ads and Facebook Ads, targeting specific demographics.</li>
-                                <li>Utilized web crawlers to track website performance and gather data to improve online visibility and enhance revenue growth.</li>
-                                <li>Analyzed data to determine the effectiveness of campaigns, making data-driven recommendations for optimization.</li>
-                                <li>Supported content creation and ensured consistency in messaging and branding for marketing initiatives.</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="timeline-item animate-on-scroll" data-animation="fade-left">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">May 2023</div>
-                    <div class="timeline-content glass-effect">
-                        <h3>Office Audit</h3>
-                        <h4>Edu Mithra Intellectual Services Pvt. Ltd., Kakkanad, Kerala</h4>
-                        <div class="timeline-details">
-                            <ul>
-                                <li>Conducted thorough audits of operations, ensuring compliance with standards for Olympiad exam websites.</li>
-                                <li>Worked closely with the team to identify potential issues and suggest improvements to enhance site functionality and user experience.</li>
-                                <li>Contributed actively to team meetings and discussions, offering insights for the betterment of the operational processes.</li>
-                                <li>Helped document audit results and prepared reports for management review.</li>
-                            </ul>
-                        </div>
+                    <div class="acc-content">
+                        <div class="content-padding"><p>Designed 15+ digital assets and reusable templates in collaboration with Japanese teams, maintaining consistent brand identity across platforms.</p></div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="graphic-design" class="animate-on-scroll" data-animation="fade-up">
-        <div class="container glass-effect">
-            <h2>Graphic Design</h2>
-            <p align="center">Explore some of my graphic design works below:</p>
-            
-            <div class="masonry-gallery">
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up">
-                    <img src="images/F4.png" alt="Graphic Design 1" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 1</h3>
-                        <p>Graphic illustration work</p>
-                        <button class="view-original-btn">View Full Image</button>
+        <!-- 02 // STRATEGIC PROJECTS -->
+        <section id="projects" class="section">
+            <h2 class="section-label">02 // STRATEGIC PROJECTS</h2>
+            <div class="bento-grid">
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="monitor" class="icon-accent"></i>
+                            <h3>OS Navigation Kiosk</h3>
+                        </div>
+                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">Developed a touchscreen kiosk exploring historical operating systems with integrated GitHub projects.</div>
                     </div>
                 </div>
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up" data-delay="100">
-                    <img src="images/666.png" alt="Graphic Design 2" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 2</h3>
-                        <p>Branding and identity design</p>
-                        <button class="view-original-btn">View Full Image</button>
-                    </div>
-                </div>
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up" data-delay="200">
-                    <img src="images/the ny.png" alt="Graphic Design 3" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 3</h3>
-                        <p>Typography experiment</p>
-                        <button class="view-original-btn">View Full Image</button>
-                    </div>
-                </div>
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up" data-delay="300">
-                    <img src="images/chester.png" alt="Graphic Design 4" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 4</h3>
-                        <p>Poster design</p>
-                        <button class="view-original-btn">View Full Image</button>
-                    </div>
-                </div>
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up" data-delay="400">
-                    <img src="images/city.png" alt="Graphic Design 5" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 5</h3>
-                        <p>Digital art concept</p>
-                        <button class="view-original-btn">View Full Image</button>
-                    </div>
-                </div>
-                <div class="gallery-item animate-on-scroll" data-animation="fade-up" data-delay="500">
-                    <img src="images/Melam.jpg" alt="Graphic Design 6" loading="lazy">
-                    <div class="gallery-overlay">
-                        <h3>Design Project 6</h3>
-                        <p>Cultural artwork</p>
-                        <button class="view-original-btn">View Full Image</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Lightbox for Gallery -->
-    <div id="lightbox" class="lightbox">
-        <span class="close-lightbox">&times;</span>
-        <div class="lightbox-content">
-            <img id="lightbox-img" class="lightbox-img">
-            <div class="caption-container">
-                <p id="caption"></p>
-            </div>
-            <a class="prev">&#10094;</a>
-            <a class="next">&#10095;</a>
-        </div>
-        <div class="lightbox-thumbs"></div>
-    </div>    
 
-    <section id="contact-info" class="animate-on-scroll" data-animation="fade-up">
-        <footer class="glass-effect">
-            <div class="container">
-                <h2>Contact Me</h2>
-                <p align="center">Ph: +91 90378 49406 | +91 97785 17331</p>
-                
-                <div class="social-media">
-                    <a href="https://www.facebook.com/achyuth.unni.7" target="_blank" aria-label="Facebook" class="hover-scale">
-                        <img src="images/facebook-icon.png" alt="Facebook">
-                    </a>
-                    <a href="https://www.instagram.com/ach_yuth._/" target="_blank" aria-label="Instagram" class="hover-scale">
-                        <img src="images/instagram-icon.png" alt="Instagram">
-                    </a>
-                    <a href="https://x.com/AchyuthUnni" target="_blank" aria-label="Twitter" class="hover-scale">
-                        <img src="images/x-icon.jpg" alt="Twitter">
-                    </a>
-                    <a href="https://www.linkedin.com/in/achyuth-unni/" target="_blank" aria-label="LinkedIn" class="hover-scale">
-                        <img src="images/LinkedIn-icon.png" alt="LinkedIn">
-                    </a>
-                    <a href="mailto:achyuthunni@gmail.com" target="_blank" aria-label="E-Mail" class="hover-scale">
-                        <img src="images/GMail-icon.png" alt="E-Mail">
-                    </a>
-                    <a href="https://wa.link/47oyi5" target="_blank" aria-label="WhatsApp" class="hover-scale">
-                        <img src="images/whatsapp-icon.png" alt="WhatsApp">
-                    </a>
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="scan-face" class="icon-accent"></i>
+                            <h3>Face Detection Exhibit</h3>
+                        </div>
+                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">Real-time Python/OpenCV pipeline transforming faces into pencil art.</div>
+                    </div>
+                </div>
+
+                <div class="acc-card bento-wide">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="award" class="icon-accent"></i>
+                            <h3>EduAR: Augmented Reality App</h3>
+                        </div>
+                        <div class="acc-status"><span>IEEE 2024</span> <i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">IEEE RAICS 2024 Publication. Transforms textbook images into interactive 3D models via Unity & Figma.</div>
+                    </div>
+                </div>
+
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="home" class="icon-accent"></i>
+                            <h3>Rental Portal</h3>
+                        </div>
+                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">PHP/MySQL property management with secure authentication.</div>
+                    </div>
                 </div>
             </div>
-            <p>&copy; 2025 Achyuth Unni. All rights reserved.</p>
-        </footer>
-    </section>
-    
-    <!-- Floating Contact Button -->
-    <div class="floating-contact">
-        <button id="contactBtn" class="contact-btn neu-button pulse-animation">
-            <i class="contact-icon">✉</i>
-            <span>Contact Me</span>
-        </button>
+        </section>
         
-        <div id="contactForm" class="contact-form glass-effect">
-            <div class="form-header">
-                <h3>Send me a message</h3>
-                <span class="close-form">&times;</span>
+        <!-- 04 // CREDENTIALS -->
+        <section id="credentials" class="section">
+            <h2 class="section-label">04 // CREDENTIALS</h2>
+            <div class="bento-grid">
+                <!-- Education - Wide Tile -->
+                <div class="acc-card bento-wide">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="graduation-cap" class="icon-accent"></i>
+                            <h3>Education</h3>
+                            <p>B.Tech in Computer Science Engineering</p>
+                        </div>
+                        <div class="acc-status"><span>2020 — 2024</span> <i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">
+                            <p><strong>From Adi Shankara Institute of Engineering and Technology, Kalady</strong></p>
+                            <p>Graduated with a <strong>6.68 CGPA</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="award" class="icon-accent"></i>
+                            <h3>Certifications</h3>
+                        </div>
+                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">
+                            <ul class="clean-list">
+                                <li>Google UX Design & IT Support</li>
+                                <li>Deep Learning (IIT Ropar)</li>
+                                <li>Problem Solving in C (IIT Kharagpur)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Leadership -->
+                <div class="acc-card">
+                    <div class="acc-trigger">
+                        <div class="acc-info">
+                            <i data-lucide="users" class="icon-accent"></i>
+                            <h3>Leadership</h3>
+                        </div>
+                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
+                    </div>
+                    <div class="acc-content">
+                        <div class="content-padding">
+                            <ul class="clean-list">
+                                <li>Graphic Design Lead (CSI Chapter, 2 yrs)</li>
+                                <li>Event Coordinator & Graphic Designer (Brahma Tech Fest)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <form id="messageForm">
-                <div class="form-group">
-                    <input type="text" id="name" name="name" placeholder="Your Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="email" name="email" placeholder="Your Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="subject" name="subject" placeholder="Subject">
-                </div>
-                <div class="form-group">
-                    <textarea id="message" name="message" placeholder="Your Message" required></textarea>
-                </div>
-                <button type="submit" class="submit-btn neu-button">Send Message</button>
-            </form>
-            <div id="formSuccess" class="form-success">
-                <p>Message sent! I'll get back to you soon.</p>
+        </section>
+        
+        <!-- 03 // GALLERY -->
+        <section id="gallery" class="section">
+            <h2 class="section-label">03 // VISUAL WORKS</h2>
+            <div class="masonry">
+                <div class="item" onclick="openLightbox(0)"><img src="images/city.png" alt="Honda City Dominance"></div>
+                <div class="item" onclick="openLightbox(1)"><img src="images/chester.png" alt="Chester Tribute"></div>
+                <div class="item" onclick="openLightbox(2)"><img src="images/the ny.png" alt="NYT Concept"></div>
+                <div class="item" onclick="openLightbox(3)"><img src="images/Melam.jpg" alt="Traditional Melam"></div>
+                <div class="item" onclick="openLightbox(4)"><img src="images/F4.png" alt="F1 Verstappen"></div>
+                <div class="item" onclick="openLightbox(5)"><img src="images/666.png" alt="Abstract Visual"></div>
+            </div>
+        </section>
+    </main>
+
+<footer class="footer">
+    <div class="footer-container">
+        <!-- Brand -->
+        <div class="footer-brand">
+            <h3>ACHYUTH UNNI<span>.</span></h3>
+        </div>
+
+        <!-- Footer Links -->
+        <div class="footer-links">
+            <!-- Contact -->
+            <div class="footer-group">
+                <h4>Contact</h4>
+                <a href="mailto:achyuthunni@gmail.com">achyuthunni@gmail.com</a>
+                <a href="tel:+919037849406">+91 90378 49406</a>
+                <a href="tel:+919778517331">+91 97785 17331</a>
+            </div>
+
+            <!-- Social -->
+            <div class="footer-group">
+                <h4>Social</h4>
+                <a href="https://www.linkedin.com/in/achyuth-unni/" target="_blank">LinkedIn</a>
+                <a href="https://github.com/achyuth-u/" target="_blank">GitHub</a>                
+                <a href="https://www.instagram.com/ach_yuth._/" target="_blank">Instagram</a>
+                <a href="https://wa.link/47oyi5" target="_blank">WhatsApp</a>
             </div>
         </div>
     </div>
-    
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="neu-button" title="Go to top">↑</button>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="interactive.js" defer></script>
+    <!-- Footer Bottom -->
+    <div class="footer-bottom">
+        <p>&copy; 2026 Achyuth Unni. All rights reserved.</p>
+    </div>
+</footer>
+
+
+    <button id="scroll-to-top" title="Go to top"><i data-lucide="arrow-up"></i></button>
+
+    <div id="lightbox" class="lightbox">
+        <button class="lb-close" onclick="closeLightbox()">&times;</button>
+        <button class="lb-arrow lb-prev" onclick="changeImage(-1)"><i data-lucide="chevron-left"></i></button>
+        <div class="lb-content"><img id="lb-img"><p id="lb-cap"></p></div>
+        <button class="lb-arrow lb-next" onclick="changeImage(1)"><i data-lucide="chevron-right"></i></button>
+    </div>
+
+    <script src="interactive.js"></script>
+    <script>lucide.createIcons();</script>
 </body>
 </html>
