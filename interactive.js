@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 2. Typing Effect Logic
-    const words = ["ENGINEERING", "DEVELOPMENT", "DESIGN"];
+// 2. Typing Effect Logic
+    const words = ["FRONTEND DEVELOPER", "GRAPHIC DESIGNER", "CREATIVE DESIGNER"]; // Updated list
     let wordIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
@@ -29,7 +29,9 @@ document.addEventListener('DOMContentLoaded', () => {
             charIdx++;
         }
 
-        let speed = isDeleting ? 100 : 150;
+        // Optional: I slightly lowered the typing speed (150 -> 100) 
+        // because "Frontend Developer" is longer than "Design".
+        let speed = isDeleting ? 50 : 100; 
 
         if (!isDeleting && charIdx === currentWord.length) {
             speed = 2000; // Pause at end
@@ -148,4 +150,5 @@ document.addEventListener('keydown', (e) => {
         if (e.key === "ArrowLeft") changeImage(-1);
         if (e.key === "Escape") closeLightbox();
     }
+
 });
