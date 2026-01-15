@@ -1,4 +1,4 @@
-# Achyuth Unni | Visual Engineering Portfolio
+# Achyuth Unni | Portfolio
 
 ![Adaptive Favicon](https://img.shields.io/badge/Adaptive-Favicon-3b82f6)
 ![Theme](https://img.shields.io/badge/Theme-Dark%20%7C%20Light-blueviolet)
