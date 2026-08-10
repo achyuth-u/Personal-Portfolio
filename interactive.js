@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 2. Typing Effect Logic
-    const words = ["FRONTEND DEVELOPER", "GRAPHIC DESIGNER", "CREATIVE DESIGNER"];
+    const words = ["FRONTEND DEVELOPER", "GRAPHIC DESIGNER", "CREATIVE DEVELOPER"];
     let wordIdx = 0;
     let charIdx = 0;
     let isDeleting = false;
