@@ -3,261 +3,341 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Achyuth Unni | Portfolio</title>
+    <title>Achyuth Unni | Graphic Designer & Full Stack Developer</title>
+    <meta name="description" content="Achyuth Unni — graphic designer and full stack developer from Kochi. Posters, album art, typography, brand visuals and production web apps.">
 
-    <!-- Adaptive Fixed Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'>
-        <style>text{fill:black;font-family:sans-serif;font-weight:900;font-size:50px;} .dot{fill:%233b82f6;} @media (prefers-color-scheme: 
-            dark) { text{fill:white;} }</style><text x='50%' y='68%' text-anchor='middle' dominant-baseline='middle'>AU<tspan class='dot'>.    
+        <style>text{fill:black;font-family:sans-serif;font-weight:900;font-size:50px;} .dot{fill:%233b82f6;} @media (prefers-color-scheme:
+            dark) { text{fill:white;} }</style><text x='50%' y='68%' text-anchor='middle' dominant-baseline='middle'>AU<tspan class='dot'>.
             </tspan></text></svg>">
-    
-    <!-- Premium Typography -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;700;800&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="styles.css">
-    <!-- Lucide Icons Library -->
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="dark">
-    <!-- Background Effects -->
-    <div class="bg-pattern"></div>
+    <div class="bg-gradient"></div>
     <div class="grain"></div>
 
-    <!-- Floating Navigation -->
+    <svg class="ribbon" id="ribbon" aria-hidden="true">
+        <path id="rib-tail" class="rib" d=""/>
+        <path id="rib-lower" class="rib" d=""/>
+    </svg>
+
+    <div class="cursor" id="cursor"><span class="cursor-label">VIEW</span></div>
+
+    <a href="#top" class="brand-morph" id="brand-morph" aria-label="Achyuth Unni — back to top">
+        <span class="logo-wrap" id="morph-logo"></span><span class="m-rest" id="morph-rest">&nbsp;UNNI</span><span class="m-dot" id="morph-dot"></span>
+    </a>
+
     <nav class="nav-capsule">
         <div class="nav-inner">
-            <div class="brand">ACHYUTH UNNI<span>.</span></div>
+            <div class="brand brand-slot" id="brand-slot" aria-hidden="true"><span class="logo-wrap" id="slot-logo"></span><span class="m-rest">&nbsp;UNNI</span><span class="slot-dot"></span></div>
             <ul class="nav-links">
+                <li><a href="#works">Work</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Work</a></li>
-                <li><a href="#credentials">Credentials</a></li>
-                <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
             <div class="nav-actions">
-                <button id="theme-toggle" title="Toggle Theme"><i data-lucide="sun"></i></button>
+                <button id="theme-toggle" title="Toggle Theme" aria-label="Toggle theme"><i data-lucide="sun"></i></button>
                 <a href="files/Resume_Achyuth.pdf" class="btn-cv" download>CV</a>
             </div>
         </div>
     </nav>
 
-    <main class="wrapper">
-        <!-- Hero Section -->
-        <header class="hero">
-            <h1>
-                <span class="gradient-text" id="typing-text"></span><span class="cursor">|</span>
-            </h1>
-            <p class="hero-description">
-                Bridging engineering and design, I create interactive digital experiences through clean, scalable code and 
-                thoughtfully crafted visual and graphic design systems, delivering cohesive, high-performance solutions from concept to execution.
-            </p>
+    <main class="wrapper" id="top">
+        <header class="hero" id="hero">
+            <div class="hero-name" id="hero-slot" aria-hidden="true"></div>
+            <h1 class="sr-only">Achyuth Unni — Graphic Designer and Full Stack Developer</h1>
+
+            <div class="hero-after">
+                <div class="hero-roles" data-reveal>
+                    <span class="gradient-text" id="typing-text"></span><span class="cursor-blink">|</span>
+                </div>
+                <p class="hero-description" data-reveal style="--d:.1s">
+                    Graphic designer and full stack developer based in Kochi. Currently designing
+                    museum exhibits at Interactive Museum Consultants and building Printbot 3D.
+                </p>
+                <div class="hero-cta" data-reveal style="--d:.2s">
+                    <a href="#works" class="btn-primary">See the work <i data-lucide="arrow-down-right"></i></a>
+                    <a href="#contact" class="btn-ghost">Let's talk</a>
+                </div>
+                <div class="hero-meta" data-reveal style="--d:.3s">
+                    <span><i data-lucide="map-pin"></i> Kochi, Kerala</span>
+                    <span class="dot-live"><i></i> Open for freelance</span>
+                </div>
+            </div>
         </header>
 
-        <!-- 01 // EXPERIENCE -->
-        <section id="experience" class="section">
-            <h2 class="section-label">01 // EXPERIENCE</h2>
-            <div class="bento-grid">
-                <div class="acc-card bento-wide">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="briefcase" class="icon-accent"></i>
-                            <h3>Full Stack Developer & Graphic Designer</h3>
-                            <p>Interactive Museum Consultants</p>
-                        </div>
-                        <div class="acc-status"><span>JUL 2025 — Present</span> <i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">
-                            <p>Contributed to the development of interactive kiosks and high-resolution gallery assets, optimizing performance and ensuring seamless digital-physical integration for large-scale exhibitions.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="globe" class="icon-accent"></i>
-                            <h3>Graphic Design Intern</h3>
-                            <p>JIITAK Inc. | Japanese Team</p>
-                        </div>
-                        <div class="acc-status"><span>MAR 2025 - JUL 2025</span> <i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">
-                            <p>Designed 15+ digital assets and reusable templates in collaboration with Japanese teams, maintaining brand consistency.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <section class="featured" id="featured" aria-label="Featured work">
+            <figure class="window" id="window">
+                <img src="images/works/heartless.webp" alt="Heartless — album art concept for The Weeknd" loading="eager" decoding="async">
+                <figcaption>
+                    <span class="win-kicker">Featured</span>
+                    <span class="win-title">Heartless</span>
+                    <span class="win-sub">Album art · Photoshop, duotone &amp; grain</span>
+                </figcaption>
+                <button class="win-open" type="button" aria-label="Open Heartless in the lightbox"><i data-lucide="arrow-up-right"></i></button>
+            </figure>
         </section>
 
-        <!-- 02 // STRATEGIC PROJECTS -->
-        <section id="projects" class="section">
-            <h2 class="section-label">02 // STRATEGIC PROJECTS</h2>
-            <div class="bento-grid">
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="monitor" class="icon-accent"></i>
-                            <h3>OS Navigation Kiosk</h3>
-                        </div>
-                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">Developed a touchscreen kiosk exploring historical operating systems with integrated GitHub projects.</div>
-                    </div>
-                </div>
-
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="scan-face" class="icon-accent"></i>
-                            <h3>Face Detection Exhibit</h3>
-                        </div>
-                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">Real-time Python/OpenCV pipeline transforming faces into pencil art. Improved processing time by ~20%.</div>
-                    </div>
-                </div>
-
-                <div class="acc-card bento-wide">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="award" class="icon-accent"></i>
-                            <h3>EduAR: Augmented Reality App</h3>
-                        </div>
-                        <div class="acc-status"><span>IEEE 2024</span> <i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">IEEE RAICS 2024 Publication. Transforms textbook images into interactive 3D models via Unity & Figma.</div>
-                    </div>
-                </div>
-
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="home" class="icon-accent"></i>
-                            <h3>Rental Portal</h3>
-                        </div>
-                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">PHP/MySQL property management with secure user authentication and responsive UI.</div>
-                    </div>
-                </div>
-            </div>
+        <section class="statement" id="statement" aria-label="Introduction">
+            <p class="statement-text" id="statement-text">Design gets the attention. <em>Code keeps it.</em> I do both — from press-ready posters and album art to production React &amp; Node — so the thing that <em>looks right</em> is also the thing that <em>works.</em></p>
         </section>
-        
-        <!-- 03 // CREDENTIALS -->
-        <section id="credentials" class="section">
-            <h2 class="section-label">03 // CREDENTIALS</h2>
-            <div class="bento-grid">
-                <div class="acc-card bento-wide">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="graduation-cap" class="icon-accent"></i>
-                            <h3>Education</h3>
-                            <p>B.Tech in Computer Science Engineering</p>
-                        </div>
-                        <div class="acc-status"><span>2020 — 2024</span> <i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">
-                            <p><strong>Adi Shankara Institute of Engineering and Technology, Kalady</strong></p>
-                            <p>Graduated with a <strong>6.68 CGPA</strong>.</p>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="award" class="icon-accent"></i>
-                            <h3>Certifications</h3>
-                        </div>
-                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">
-                            <ul class="clean-list">
-                                <li>Google UX Design & IT Support</li>
-                                <li>Deep Learning (IIT Ropar)</li>
-                                <li>Problem Solving in C (IIT Kharagpur)</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
+        <div class="band" id="band" aria-hidden="true">
+            <div class="band-track" id="band-track"></div>
+        </div>
 
-                <div class="acc-card">
-                    <div class="acc-trigger">
-                        <div class="acc-info">
-                            <i data-lucide="users" class="icon-accent"></i>
-                            <h3>Leadership</h3>
-                        </div>
-                        <div class="acc-status"><i data-lucide="chevron-down"></i></div>
-                    </div>
-                    <div class="acc-content">
-                        <div class="content-padding">
-                            <ul class="clean-list">
-                                <li>Graphic Design Lead (CSI Chapter, 2 yrs)</li>
-                                <li>Event Coordinator & Graphic Designer (Brahma Tech Fest)</li>
-                            </ul>
-                        </div>
-                    </div>
+        <section id="works" class="section">
+            <div class="sec-head" data-reveal>
+                <span class="sec-index">01</span>
+                <div>
+                    <h2 class="sec-title">Selected Works</h2>
+                    <p class="sec-sub">Posters, album art, typography & campaign visuals — click any piece to view it full-size.</p>
                 </div>
             </div>
-        </section>
-        
-        <!-- 04 // GALLERY -->
-        <section id="gallery" class="section">
-            <h2 class="section-label">04 // VISUAL WORKS</h2>
-            <div class="masonry">
-                <div class="item" onclick="openLightbox(0)"><img src="images/city.png" alt="Honda City Dominance"></div>
-                <div class="item" onclick="openLightbox(1)"><img src="images/chester.png" alt="Chester Tribute"></div>
-                <div class="item" onclick="openLightbox(2)"><img src="images/the ny.png" alt="NYT Concept"></div>
-                <div class="item" onclick="openLightbox(3)"><img src="images/Melam.jpg" alt="Traditional Melam"></div>
-                <div class="item" onclick="openLightbox(4)"><img src="images/F4.png" alt="F1 Verstappen"></div>
-                <div class="item" onclick="openLightbox(5)"><img src="images/666.png" alt="Abstract 666 Visual"></div>
-            </div>
+            <div class="works" id="works-grid"></div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <h3>ACHYUTH UNNI<span>.</span></h3>
-            </div>
-            <div class="footer-links">
-                <div class="footer-group">
-                    <h4>Contact</h4>
-                    <a href="mailto:achyuthunni@gmail.com">achyuthunni@gmail.com</a>
-                    <a href="tel:+919037849406">+91 90378 49406</a>
-                    <a href="tel:+919778517331">+91 97785 17331</a>
+    <div class="inverted" id="inverted">
+        <svg class="rib-inlet" id="rib-inlet" aria-hidden="true">
+            <defs><clipPath id="inlet-clip"><rect id="inlet-clip-rect" x="0" y="0" width="100%" height="0"/></clipPath></defs>
+            <path id="rib-funnel" clip-path="url(#inlet-clip)" d=""/>
+        </svg>
+        <div class="inner">
+            <section id="skills" class="section">
+                <div class="giant" aria-hidden="true">Craft</div>
+                <div class="sec-head" data-reveal>
+                    <span class="sec-index">02</span>
+                    <div>
+                        <h2 class="sec-title">Skills & Tools</h2>
+                        <p class="sec-sub">Design-first, engineering-backed. From press-ready artwork in the Adobe suite to production React kiosks and Node APIs.</p>
+                    </div>
                 </div>
-                <div class="footer-group">
-                    <h4>Social</h4>
-                    <a href="https://www.linkedin.com/in/achyuth-unni/" target="_blank">LinkedIn</a>
-                    <a href="https://github.com/achyuth-u/" target="_blank">GitHub</a>                
-                    <a href="https://www.instagram.com/ach_yuth._/" target="_blank">Instagram</a>
-                    <a href="https://wa.link/47oyi5" target="_blank">WhatsApp</a>
+                <div class="skill-filters" role="tablist" aria-label="Filter skills" data-reveal>
+                    <button class="chip active" data-filter="all">All</button>
+                    <button class="chip" data-filter="design">Design</button>
+                    <button class="chip" data-filter="frontend">Frontend</button>
+                    <button class="chip" data-filter="backend">Backend</button>
+                    <button class="chip" data-filter="tools">Tools</button>
                 </div>
-            </div>
+                <div class="skills-grid" id="skills-grid"></div>
+                <div class="tool-marquee" aria-label="Also fluent in">
+                    <div class="marquee-track" id="marquee-track"></div>
+                </div>
+            </section>
+
+            <section id="experience" class="section">
+                <div class="sec-head" data-reveal>
+                    <span class="sec-index">03</span>
+                    <div>
+                        <h2 class="sec-title">Experience</h2>
+                        <p class="sec-sub">Where the pixels have been shipped.</p>
+                    </div>
+                </div>
+                <div class="rows" data-rows>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">01</span>
+                            <span class="row-title">Designer &amp; Front-End Developer</span>
+                            <span class="row-meta">Interactive Museum Consultants · Jul 2025 — Present</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Design and build production museum exhibits end-to-end — React touchscreen kiosks, Python/OpenCV computer-vision installations, and the large-format wall graphics and information panels around them, including work under the Government of Kerala's 100-day action plan. Coordinate directly with museum staff, government officials and print suppliers to keep concurrent installations on schedule.</p>
+                            <div class="row-tags"><span>React</span><span>Python · OpenCV</span><span>Photoshop</span><span>Illustrator</span><span>InDesign</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">02</span>
+                            <span class="row-title">Graphic Design Intern</span>
+                            <span class="row-meta">JIITAK Inc. · India / Japan · Mar — Jul 2025</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Produced digital assets and reusable Adobe / Figma templates for the studio's India and Japan arms, pitching concepts directly to the Japan-side design lead and iterating to meet brand and cultural requirements.</p>
+                            <div class="row-tags"><span>Figma</span><span>Adobe CC</span><span>Brand systems</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">03</span>
+                            <span class="row-title">Graphic Design Lead</span>
+                            <span class="row-meta">CSI Chapter · ASIET · 2022 — 2024</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Led the chapter's design team — posters, flyers, social graphics, stage backdrops, merchandise and certificates for chapter events and the annual college tech fest, all to hard deadlines.</p>
+                            <div class="row-tags"><span>Photoshop</span><span>Illustrator</span><span>Canva</span></div>
+                        </div></div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="projects" class="section">
+                <div class="sec-head" data-reveal>
+                    <span class="sec-index">04</span>
+                    <div>
+                        <h2 class="sec-title">Code & Builds</h2>
+                        <p class="sec-sub">The engineering side — things shipped with a keyboard instead of a pen tool.</p>
+                    </div>
+                </div>
+                <div class="rows" data-rows>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">01</span>
+                            <span class="row-title">Printbot 3D — Full-Stack 3D Printing Platform</span>
+                            <span class="row-meta">In development</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>E-commerce platform where customers upload STL/OBJ/STEP files, preview them in a browser-based 3D viewer, configure print settings and order. 15+ endpoint REST API with JWT auth, bcrypt and role-based access; admin dashboard; templated email + WhatsApp Cloud API notifications on every status change.</p>
+                            <div class="row-tags"><span>React 19</span><span>TypeScript</span><span>Node · Express</span><span>PostgreSQL · Prisma</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">02</span>
+                            <span class="row-title">OS Navigation Kiosk</span>
+                            <span class="row-meta">Computer Artifacts Museum &amp; Gallery, Govt. of Kerala</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Touchscreen kiosk with a home-screen navigation system letting visitors explore historical operating systems via live GitHub project data.</p>
+                            <div class="row-tags"><span>React</span><span>SCSS</span><span>GitHub API</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">03</span>
+                            <span class="row-title">Face Detection Exhibit</span>
+                            <span class="row-meta">Real-time computer vision installation</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Detects visitor faces in real time and renders them as live pencil sketches, with a pipeline optimised (~20% faster) for continuous unattended public operation.</p>
+                            <div class="row-tags"><span>Python</span><span>OpenCV</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">04</span>
+                            <span class="row-title">EduAR — Augmented Reality App</span>
+                            <span class="row-meta">IEEE RAICS 2024</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>AR app that scans textbook images to display interactive 3D models; led the UI design. Survey paper presented at IEEE RAICS 2024 and available on IEEE Xplore.</p>
+                            <div class="row-tags"><span>Unity</span><span>Figma</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">05</span>
+                            <span class="row-title">Rental Portal</span>
+                            <span class="row-meta">Full-stack property listings</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Browse, list and manage rental properties, with a responsive UI and user authentication.</p>
+                            <div class="row-tags"><span>HTML · CSS · JS</span><span>MySQL</span></div>
+                        </div></div>
+                    </article>
+                </div>
+            </section>
+
+            <section id="credentials" class="section">
+                <div class="sec-head" data-reveal>
+                    <span class="sec-index">05</span>
+                    <div>
+                        <h2 class="sec-title">Credentials</h2>
+                        <p class="sec-sub">Education, certifications and the roles in between.</p>
+                    </div>
+                </div>
+                <div class="rows" data-rows>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">01</span>
+                            <span class="row-title">B.Tech, Computer Science Engineering</span>
+                            <span class="row-meta">Adi Shankara Institute of Engineering &amp; Technology · 2020 — 2024</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <p>Graduated with a 6.68 CGPA. IEEE-published (RAICS 2024).</p>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">02</span>
+                            <span class="row-title">Certifications</span>
+                            <span class="row-meta">Google · IIT Ropar · IIT Kharagpur</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <div class="row-tags"><span>Google UX Design</span><span>Google IT Support</span><span>Deep Learning (IIT Ropar)</span><span>Problem Solving in C (IIT Kharagpur)</span></div>
+                        </div></div>
+                    </article>
+                    <article class="row">
+                        <div class="row-head">
+                            <span class="row-num">03</span>
+                            <span class="row-title">Leadership</span>
+                            <span class="row-meta">Design lead · event coordination</span>
+                                                    </div>
+                        <div class="row-body"><div class="row-body-inner">
+                            <div class="row-tags"><span>Graphic Design Lead — CSI Chapter (2 yrs)</span><span>Event Coordinator &amp; Designer — Brahma Tech Fest</span><span>School Head Boy</span></div>
+                        </div></div>
+                    </article>
+                </div>
+            </section>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Achyuth Unni. All rights reserved.</p>
+    </div>
+
+    <footer class="footer" id="contact">
+        <div class="inner">
+            <div class="footer-top" id="footer-top">
+                <h2 id="footer-q"><span class="line">Questions, ideas,</span><span class="line">a project in mind?</span></h2>
+                <a href="mailto:achyuthunni@gmail.com" class="footer-cta"><span class="cta-label" id="footer-cta-label">Get in touch</span><i data-lucide="arrow-right"></i></a>
+            </div>
+            <div class="footer-main">
+                <div class="footer-links">
+                    <div class="footer-group">
+                        <h4>Contact</h4>
+                        <a href="mailto:achyuthunni@gmail.com">achyuthunni@gmail.com</a>
+                        <a href="tel:+919037849406">+91 90378 49406</a>
+                        <a href="tel:+919778517331">+91 97785 17331</a>
+                    </div>
+                    <div class="footer-group">
+                        <h4>Social</h4>
+                        <a href="https://www.linkedin.com/in/achyuth-unni/" target="_blank" rel="noopener">LinkedIn</a>
+                        <a href="https://github.com/achyuth-u/" target="_blank" rel="noopener">GitHub</a>
+                        <a href="https://www.instagram.com/ach_yuth._/" target="_blank" rel="noopener">Instagram</a>
+                        <a href="https://wa.link/47oyi5" target="_blank" rel="noopener">WhatsApp</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Achyuth Unni. Designed and hand-coded — no templates.</p>
+                <a href="#top" class="back-top">Back to top <i data-lucide="arrow-up"></i></a>
+            </div>
         </div>
     </footer>
 
-    <button id="scroll-to-top" title="Go to top"><i data-lucide="arrow-up"></i></button>
+    <button id="scroll-to-top" title="Go to top" aria-label="Scroll to top"><i data-lucide="arrow-up"></i></button>
 
-    <div id="lightbox" class="lightbox">
-        <button class="lb-close" onclick="closeLightbox()">&times;</button>
-        <button class="lb-arrow lb-prev" onclick="changeImage(-1)"><i data-lucide="chevron-left"></i></button>
-        <div class="lb-content"><img id="lb-img"><p id="lb-cap"></p></div>
-        <button class="lb-arrow lb-next" onclick="changeImage(1)"><i data-lucide="chevron-right"></i></button>
+    <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&times;</button>
+        <button class="lb-arrow lb-prev" onclick="changeImage(-1)" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+        <div class="lb-content">
+            <img id="lb-img" alt="">
+            <div class="lb-meta">
+                <div>
+                    <p id="lb-cap"></p>
+                    <p id="lb-sub"></p>
+                </div>
+                <span id="lb-count"></span>
+            </div>
+        </div>
+        <button class="lb-arrow lb-next" onclick="changeImage(1)" aria-label="Next"><i data-lucide="chevron-right"></i></button>
     </div>
 
+    <script src="logo.js"></script>
     <script src="interactive.js"></script>
     <script>lucide.createIcons();</script>
 </body>
