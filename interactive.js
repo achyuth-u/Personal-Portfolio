@@ -1,16 +1,16 @@
 const WORKS = [
-    { src: 'breakdown',   title: '21st Century Breakdown', cat: 'Poster',          tools: 'Photoshop · Halftone',        ratio: '1523 / 1600' },
-    { src: 'heartless',   title: 'Heartless',              cat: 'Album Art',       tools: 'Photoshop · Duotone & grain', ratio: '4 / 5' },
-    { src: 'kurt',        title: 'Kurt',                   cat: 'Portrait',        tools: 'Photoshop · Scanline',        ratio: '880 / 1050' },
-    { src: 'coordinates', title: 'Coordinates',            cat: 'Generative',      tools: 'Illustrator · Photoshop',     ratio: '3 / 4' },
-    { src: 'chester',     title: 'Chester',                cat: 'Tribute Poster',  tools: 'Photoshop · Illustrator',     ratio: '1 / 1' },
-    { src: 'wordface',    title: 'Between the Lines',      cat: 'Typography',      tools: 'Photoshop · Type portrait',   ratio: '734 / 812' },
-    { src: 'verstappen',  title: 'Verstappen 01',          cat: 'Sports Poster',   tools: 'Photoshop',                   ratio: '1391 / 1600' },
-    { src: 'signal',      title: 'Signal Lost',            cat: 'Glitch Art',      tools: 'Photoshop · Displacement',    ratio: '1 / 1' },
-    { src: 'nyt',         title: 'Iron Giants',            cat: 'Editorial',       tools: 'InDesign · Photoshop',        ratio: '1 / 1' },
-    { src: 'city',        title: 'The All-New City',       cat: 'Automotive Ad',   tools: 'Photoshop',                   ratio: '4 / 5' },
-    { src: 'melam',       title: 'Melam',                  cat: 'Event Poster',    tools: 'Photoshop · Illustrator',     ratio: '1 / 1' },
-    { src: 'cityrain',    title: 'City — Wet Roads',       cat: 'Automotive Ad',   tools: 'Photoshop',                   ratio: '890 / 593' },
+    { src: 'breakdown',   title: 'Downstroke',              cat: 'Poster',          tools: 'Photoshop · Halftone',        ratio: '1523 / 1600' },
+    { src: 'heartless',   title: 'After Hours',             cat: 'Album Art',       tools: 'Photoshop · Duotone & grain', ratio: '4 / 5' },
+    { src: 'kurt',        title: 'Fadeout',                 cat: 'Portrait',        tools: 'Photoshop · Scanline',        ratio: '880 / 1050' },
+    { src: 'coordinates', title: 'Triangulation',           cat: 'Generative',      tools: 'Illustrator · Photoshop',     ratio: '3 / 4' },
+    { src: 'chester',     title: 'Echoes',                  cat: 'Tribute Poster',  tools: 'Photoshop · Illustrator',     ratio: '1 / 1' },
+    { src: 'wordface',    title: 'Between the Lines',       cat: 'Typography',      tools: 'Photoshop · Type portrait',   ratio: '734 / 812' },
+    { src: 'verstappen',  title: 'P1',                      cat: 'Sports Poster',   tools: 'Photoshop',                   ratio: '1391 / 1600' },
+    { src: 'signal',      title: 'Signal Lost',             cat: 'Glitch Art',      tools: 'Photoshop · Displacement',    ratio: '1 / 1' },
+    { src: 'nyt',         title: 'Late Edition',            cat: 'Editorial',       tools: 'InDesign · Photoshop',        ratio: '1 / 1' },
+    { src: 'city',        title: 'The All-New City',        cat: 'Automotive Ad',   tools: 'Photoshop',                   ratio: '4 / 5' },
+    { src: 'melam',       title: 'Melam',                   cat: 'Event Poster',    tools: 'Photoshop · Illustrator',     ratio: '1 / 1' },
+    { src: 'cityrain',    title: 'City — Wet Roads',        cat: 'Automotive Ad',   tools: 'Photoshop',                   ratio: '890 / 593' },
 ];
 let FEATURED_INDEX = 0;
 const FEATURED_POOL = ['heartless', 'breakdown', 'chester', 'city', 'cityrain', 'kurt'];
@@ -80,11 +80,12 @@ const runScrollFns = () => scrollFns.forEach(f => f());
 
 let sY = window.scrollY, smoothRunning = false;
 const smoothFns = [];
+const SMOOTH_K = window.matchMedia('(hover: none)').matches ? 0.22 : 0.14;
 function onSmooth(fn) { smoothFns.push(fn); }
 function tickSmooth() {
     const diff = window.scrollY - sY;
     if (reducedMotion || Math.abs(diff) < 0.25) { sY = window.scrollY; smoothFns.forEach(f => f(sY)); smoothRunning = false; return; }
-    sY += diff * 0.14;
+    sY += diff * SMOOTH_K;
     smoothFns.forEach(f => f(sY));
     requestAnimationFrame(tickSmooth);
 }
@@ -150,25 +151,34 @@ function initLogo() {
 function initBrandMorph() {
     const morph = $('brand-morph'), heroSlot = $('hero-slot'), navSlot = $('slot-logo'), morphLogo = $('morph-logo');
     const rest = $('morph-rest'), dot = $('morph-dot');
-    let heroFont = 100, navFont = 18, mode = '', heroDoc = { left: 0, top: 0 }, dotGap = 1;
+    let heroFont = 100, navFont = 18, mode = '', heroDoc = { left: 0, top: 0 }, navRect = { left: 0, top: 0 };
+    let ox = 0, oy = 0, afterH = 0, afterUnni = 0, dotTop = 0;
+    const useTranslate = 'translate' in dot.style;
     const setMode = (m) => {
         if (m === mode) return;
         mode = m;
         morph.style.fontSize = `${m === 'nav' ? navFont : heroFont}px`;
         const base = m === 'nav' ? navFont : heroFont;
-        const dotSize = base * 0.19; dotGap = base * 0.07;
+        const dotSize = base * 0.19, dotGap = base * 0.07;
         dot.style.width = dot.style.height = `${dotSize}px`;
-        dot.style.top = `${morphLogo.offsetTop + morphLogo.offsetHeight - dotSize}px`;
+        ox = morphLogo.offsetLeft; oy = morphLogo.offsetTop;
+        afterH = ox + morphLogo.offsetWidth + dotGap;
+        afterUnni = rest.offsetLeft + rest.offsetWidth + dotGap;
+        dotTop = oy + morphLogo.offsetHeight - dotSize;
+        if (!useTranslate) dot.style.top = `${dotTop}px`;
     };
     const measure = () => {
         heroFont = parseFloat(getComputedStyle(heroSlot).fontSize);
         navFont = parseFloat(getComputedStyle(navSlot.closest('.brand')).fontSize);
         const r = heroSlot.getBoundingClientRect();
         heroDoc = { left: r.left, top: r.top + window.scrollY };
+        const nr = navSlot.getBoundingClientRect();
+        navRect = { left: nr.left, top: nr.top };
         const m = mode || 'big'; mode = ''; setMode(m);
     };
     const easeInOut = (t) => t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 
+    let lastT = '', lastD = '';
     const frame = (y) => {
         const dist = window.innerHeight * 0.55;
         const raw = clamp(y / dist, 0, 1);
@@ -177,15 +187,16 @@ function initBrandMorph() {
         setMode(docked ? 'nav' : 'big');
         const base = mode === 'nav' ? navFont : heroFont;
         const sc = lerp(heroFont, navFont, p) / base;
-        const nr = navSlot.getBoundingClientRect();
-        const ox = morphLogo.offsetLeft, oy = morphLogo.offsetTop;
-        const x = lerp(heroDoc.left, nr.left, p) - ox * sc;
-        const yy = lerp(heroDoc.top - y, nr.top, p) - oy * sc;
-        morph.style.transform = `translate3d(${x}px, ${yy}px, 0) scale(${sc})`;
+        const x = lerp(heroDoc.left, navRect.left, p) - ox * sc;
+        const yy = lerp(heroDoc.top - y, navRect.top, p) - oy * sc;
+        const t = `translate3d(${x.toFixed(2)}px, ${yy.toFixed(2)}px, 0) scale(${sc.toFixed(4)})`;
+        if (t !== lastT) { morph.style.transform = t; lastT = t; }
         morph.style.setProperty('--rest', clamp((raw - 0.55) / 0.45, 0, 1).toFixed(3));
-        const afterH = morphLogo.offsetLeft + morphLogo.offsetWidth + dotGap;
-        const afterUnni = rest.offsetLeft + rest.offsetWidth + dotGap;
-        dot.style.left = `${lerp(afterH, afterUnni, p).toFixed(2)}px`;
+        const dx = lerp(afterH, afterUnni, p).toFixed(2);
+        if (dx !== lastD) {
+            if (useTranslate) dot.style.translate = `${dx}px ${dotTop.toFixed(2)}px`; else dot.style.left = `${dx}px`;
+            lastD = dx;
+        }
         morph.classList.toggle('docked', docked);
     };
     measure();
@@ -441,10 +452,13 @@ function initRibbon() {
     };
 
     const show = (el, from, to) => {
-        const len = Math.max(0, to - from);
-        el.style.strokeDasharray = `${len.toFixed(1)} 100000`;
+        const key = `${Math.max(0, to - from).toFixed(1)}|${(-from).toFixed(1)}`;
+        if (el.__k === key) return;
+        el.__k = key;
+        el.style.strokeDasharray = `${Math.max(0, to - from).toFixed(1)} 100000`;
         el.style.strokeDashoffset = (-from).toFixed(1);
     };
+    let lastClip = '';
     const reel = (c) => { const v = clamp((c - 0.06) / 0.94, 0, 1); return [clamp(c / 0.06, 0, 1), (v + v * v * (3 - 2 * v)) / 2]; };
 
     const draw = (y) => {
@@ -466,7 +480,8 @@ function initRibbon() {
         const sInlet = clamp(e - geo.tailLen - geo.winH - geo.lowerEffort, 0, geo.inletLen - geo.bandW);
 
         show(tail, sTail, dTail);
-        win.style.clipPath = `inset(${(sWin * 100).toFixed(2)}% 0 ${((1 - fWin) * 100).toFixed(2)}% 0 round 28px)`;
+        const clip = `inset(${(sWin * 100).toFixed(2)}% 0 ${((1 - fWin) * 100).toFixed(2)}% 0 round 28px)`;
+        if (clip !== lastClip) { win.style.clipPath = clip; lastClip = clip; }
         show(lower, sLower, dLower);
         show(funnel, sInlet, dInlet);
 
@@ -612,14 +627,19 @@ function initRows() {
     const rows = [...document.querySelectorAll('.row')];
     if (!rows.length || reducedMotion) return;
     const update = () => {
+        const vh = window.innerHeight;
         rows.forEach(row => {
+            const rr = row.getBoundingClientRect();
+            if (rr.bottom < -vh || rr.top > vh * 2) return;
             const head = row.querySelector('.row-head').getBoundingClientRect();
             const body = row.querySelector('.row-body');
             const br = body.getBoundingClientRect();
             const cut = clamp(head.bottom - br.top, 0, br.height);
-            body.style.clipPath = cut > 0.5 ? `inset(${cut.toFixed(1)}px 0 0 0)` : 'none';
+            const clip = cut > 0.5 ? `inset(${cut.toFixed(1)}px 0 0 0)` : 'none';
+            if (body.__clip !== clip) { body.style.clipPath = clip; body.__clip = clip; }
             const t = clamp((br.height - cut) / Math.max(1, br.height), 0, 1);
-            body.style.opacity = (0.35 + 0.65 * t).toFixed(3);
+            const op = (0.35 + 0.65 * t).toFixed(3);
+            if (body.__op !== op) { body.style.opacity = op; body.__op = op; }
         });
     };
     onScroll(update); update();
