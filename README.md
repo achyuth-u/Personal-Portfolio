@@ -97,7 +97,7 @@ The full-bleed blue footer — "Questions, ideas, a project in mind? Get in touc
 | Layer | What |
 |---|---|
 | **Typography** | [Sora 800](https://fonts.google.com/specimen/Sora) (headings & wordmark), [Inter 300–600](https://fonts.google.com/specimen/Inter) (body) via Google Fonts |
-| **Icons** | [Lucide](https://lucide.dev/) loaded from unpkg; skill icons are hand-drawn SVG in `interactive.js` |
+| **Icons** | Nine inline SVG icons (Lucide shapes) rendered by a 20-line helper — no icon library, no third-party script; skill icons are hand-drawn SVG in `interactive.js` |
 | **Layout** | CSS Grid & Flexbox, CSS custom properties for theming, `position: sticky` for the nav and row titles |
 | **Animation** | `requestAnimationFrame` loops, `IntersectionObserver` reveals, CSS `@keyframes` for grain and marquee |
 | **Scroll engine** | One rAF-throttled `scroll` listener feeds registered callbacks; a parallel inertial copy (`sY`) chases `scrollY` at factor `0.14` for the ribbon and the wordmark morph |
@@ -117,7 +117,7 @@ An SVG `<path>` string is built at runtime by measuring the masonry grid's colum
 ├── interactive.js         # Works & skills data, morph, ribbon, rows, cursor, lightbox, typing effect
 ├── logo.js               # Generated: 'ACHYUTH' outlines + writing stroke masks, SVG builder
 ├── images/
-│   ├── works/            # 12 optimised WebP images (one per showcased piece)
+│   ├── works/            # 12 WebP images (full size) + works/sm/ 800px variants for phones and tablets
 │   └── readme/           # Screenshots for this README
 ├── files/
 │   └── Resume_Achyuth.pdf
@@ -209,7 +209,7 @@ body.light {
 
 ## Credits
 
-Fonts by Google Fonts ([Sora](https://fonts.google.com/specimen/Sora), [Inter](https://fonts.google.com/specimen/Inter)). Icons by [Lucide](https://lucide.dev/).
+Fonts by Google Fonts ([Sora](https://fonts.google.com/specimen/Sora), [Inter](https://fonts.google.com/specimen/Inter)). Icon shapes from [Lucide](https://lucide.dev/), inlined.
 
 ---
 

@@ -276,7 +276,7 @@ body.light .gradient-text { background: linear-gradient(to right, #121212, var(-
 .work.is-in { opacity: 1; transform: none; transition-delay: calc(var(--i) * 60ms), calc(var(--i) * 60ms), 0s, 0s; }
 .work:hover { border-color: var(--border-strong); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7); }
 .work-media { width: 100%; overflow: hidden; background: #111; }
-.work-media img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform 1s var(--ease); will-change: transform; }
+.work-media img { width: 100%; height: 100%; object-fit: cover; display: block; transform: scale(1.02); transition: transform 1s var(--ease); }
 .work:hover .work-media img { transform: scale(1.08); }
 .work-cap {
     position: absolute; inset: 0; padding: 18px; display: flex; flex-direction: column; justify-content: space-between;
@@ -296,6 +296,7 @@ body.light .gradient-text { background: linear-gradient(to right, #121212, var(-
 .work-arrow svg { width: 18px; height: 18px; }
 .work:hover .work-arrow { transform: scale(1); }
 @media (hover: none) {
+    .grain { animation: none; inset: 0; width: 100%; height: 100%; }
     .work-cap { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.8), transparent 55%); }
     .work-top, .work-bottom { transform: none; }
     .work-arrow { display: none; }
@@ -502,6 +503,8 @@ body.light .gradient-text { background: linear-gradient(to right, #121212, var(-
 }
 @media (max-width: 600px) {
     .works { columns: 1; }
+    .hero-name { transform: translateX(calc(4.31vw - 10px)); }
+    .window { width: calc(100vw - 7px); margin-left: -16px; }
     .work-cap { padding: 14px; }
     .window { border-radius: 20px; }
     .window figcaption { left: 18px; bottom: 18px; }

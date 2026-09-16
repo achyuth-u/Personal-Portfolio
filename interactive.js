@@ -91,7 +91,35 @@ function tickSmooth() {
 onScroll(() => { if (!smoothRunning) { smoothRunning = true; requestAnimationFrame(tickSmooth); } });
 const runSmoothFns = () => { sY = window.scrollY; smoothFns.forEach(f => f(sY)); };
 
+
+const UI_ICONS = {
+    'sun': '<circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/>',
+    'moon': '<path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/>',
+    'arrow-up': '<path d="m5 12 7-7 7 7"/><path d="M12 19V5"/>',
+    'arrow-right': '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+    'arrow-down-right': '<path d="m7 7 10 10"/><path d="M17 7v10H7"/>',
+    'arrow-up-right': '<path d="M7 7h10v10"/><path d="M7 17 17 7"/>',
+    'chevron-left': '<path d="m15 18-6-6 6-6"/>',
+    'chevron-right': '<path d="m9 18 6-6-6-6"/>',
+    'map-pin': '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+};
+function renderIcons(scope = document) {
+    scope.querySelectorAll('i[data-lucide]').forEach(el => {
+        const inner = UI_ICONS[el.dataset.lucide];
+        if (!inner) return;
+        const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('width', '24'); svg.setAttribute('height', '24');
+        svg.setAttribute('fill', 'none'); svg.setAttribute('stroke', 'currentColor'); svg.setAttribute('stroke-width', '2');
+        svg.setAttribute('stroke-linecap', 'round'); svg.setAttribute('stroke-linejoin', 'round'); svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('class', `lucide lucide-${el.dataset.lucide} ${el.className}`.trim());
+        svg.innerHTML = inner;
+        el.replaceWith(svg);
+    });
+}
+
 let logoWritten = false;
+let logoResolve = () => {};
+const logoReady = new Promise(res => { logoResolve = res; });
 function initLogo() {
     const morphWrap = $('morph-logo'), slotWrap = $('slot-logo');
     morphWrap.innerHTML = buildLogoSVG('m', { masked: true });
@@ -100,12 +128,23 @@ function initLogo() {
     const morphSvg = morphWrap.querySelector('svg');
     const total = primeLogo(morphSvg, { instant: reducedMotion });
     const heroAfter = document.querySelector('.hero-after');
-    if (reducedMotion) { heroAfter.classList.add('on'); logoWritten = true; $('brand-morph').classList.add('dotted'); }
-    else {
-        setTimeout(() => morphSvg.classList.add('write'), 250);
-        setTimeout(() => heroAfter.classList.add('on'), 250 + total * 0.72);
-        setTimeout(() => { morphSvg.classList.add('done'); logoWritten = true; $('brand-morph').classList.add('dotted'); runSmoothFns(); }, 250 + total - 100);
-    }
+    let finished = false;
+    const finish = () => {
+        if (finished) return;
+        finished = true;
+        morphSvg.classList.add('done'); logoWritten = true; $('brand-morph').classList.add('dotted');
+        heroAfter.classList.add('on');
+        runSmoothFns(); logoResolve();
+    };
+    if (reducedMotion) { finish(); return; }
+    const strokes = morphSvg.querySelectorAll('.mk').length;
+    let ended = 0;
+    morphSvg.addEventListener('animationend', () => { if (++ended >= strokes) finish(); });
+    requestAnimationFrame(() => requestAnimationFrame(() => setTimeout(() => {
+        morphSvg.classList.add('write');
+        setTimeout(() => heroAfter.classList.add('on'), total * 0.72);
+        setTimeout(finish, total + 2500);
+    }, 150)));
 }
 
 function initBrandMorph() {
@@ -231,14 +270,14 @@ function initRibbon() {
         const mobile = cols === 1 && edgeX !== null;
 
         const prevShift = heroSlot.style.transform;
-        heroSlot.style.transform = '';
+        heroSlot.style.transform = 'none';
         let hr = heroSlot.getBoundingClientRect();
         let xDot = hr.right + dotGap + dotSize / 2;
         if (mobile && Math.abs(edgeX - xDot) <= 60) {
             heroSlot.style.transform = `translateX(${(edgeX - xDot).toFixed(1)}px)`;
             hr = heroSlot.getBoundingClientRect();
             xDot = hr.right + dotGap + dotSize / 2;
-        }
+        } else heroSlot.style.transform = '';
         if (heroSlot.style.transform !== prevShift) setTimeout(() => window.dispatchEvent(new Event('resize')), 0);
         const startY = hr.bottom + window.scrollY - dotSize;
 
@@ -456,7 +495,10 @@ function initFeatured() {
     FEATURED_INDEX = Math.max(0, WORKS.findIndex(w => w.src === pick));
     const w = WORKS[FEATURED_INDEX];
     const img = win.querySelector('img');
+    img.sizes = '(max-width: 600px) 100vw, 1000px';
+    img.srcset = `images/works/sm/${w.src}.webp 800w, images/works/${w.src}.webp 1600w`;
     img.src = `images/works/${w.src}.webp`;
+    img.setAttribute('fetchpriority', 'high');
     img.alt = `${w.title} — ${w.cat}`;
     win.querySelector('.win-title').textContent = w.title;
     win.querySelector('.win-sub').textContent = `${w.cat} · ${w.tools}`;
@@ -469,7 +511,7 @@ function buildWorks() {
     grid.innerHTML = WORKS.map((w, i) => `
         <figure class="work" style="--i:${i % 3}" data-index="${i}" tabindex="0" role="button" aria-label="Open ${w.title}">
             <div class="work-media" style="aspect-ratio:${w.ratio}">
-                <img src="images/works/${w.src}.webp" alt="${w.title} — ${w.cat}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">
+                <img src="images/works/${w.src}.webp" srcset="images/works/sm/${w.src}.webp 800w, images/works/${w.src}.webp 1600w" sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 330px" alt="${w.title} — ${w.cat}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">
             </div>
             <figcaption class="work-cap">
                 <div class="work-top"><span class="work-num">${pad2(i + 1)}</span><span class="work-cat">${w.cat}</span></div>
@@ -761,7 +803,7 @@ document.addEventListener('DOMContentLoaded', () => {
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light');
         themeBtn.innerHTML = `<i data-lucide="${document.body.classList.contains('light') ? 'moon' : 'sun'}"></i>`;
-        lucide.createIcons();
+        renderIcons();
     });
 
     const reveal = new IntersectionObserver((entries) => {
@@ -773,10 +815,17 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll(() => { const line = window.innerHeight * 0.55; numerals.forEach(h => h.classList.toggle('lit', h.getBoundingClientRect().top < line)); });
 
     initStatement();
-    initRibbon();
+    let ribbonStarted = false;
+    const startRibbon = () => {
+        if (ribbonStarted) return;
+        ribbonStarted = true;
+        initRibbon(); runScrollFns(); runSmoothFns();
+    };
+    logoReady.then(() => setTimeout(startRibbon, 50));
+    window.addEventListener('scroll', startRibbon, { once: true, passive: true });
     runScrollFns();
     runSmoothFns();
-    lucide.createIcons();
+    renderIcons();
 });
 
 function openLightbox(index) {
@@ -792,7 +841,10 @@ function updateLightboxUI(animate = true) {
     const img = $('lb-img'), w = WORKS[currentImageIndex];
     if (!w) return;
     const apply = () => {
-        img.src = `images/works/${w.src}.webp`;
+        img.sizes = '(max-width: 600px) 100vw, 1000px';
+    img.srcset = `images/works/sm/${w.src}.webp 800w, images/works/${w.src}.webp 1600w`;
+    img.src = `images/works/${w.src}.webp`;
+    img.setAttribute('fetchpriority', 'high');
         img.alt = `${w.title} — ${w.cat}`;
         $('lb-cap').textContent = w.title;
         $('lb-sub').textContent = `${w.cat} · ${w.tools}`;
