@@ -45,9 +45,23 @@
             <div class="nav-actions">
                 <button id="theme-toggle" title="Toggle Theme" aria-label="Toggle theme"><i data-lucide="sun"></i></button>
                 <a href="files/Resume_Achyuth.pdf" class="btn-cv" download>CV</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Menu" aria-expanded="false" aria-controls="mobile-menu"><span></span><span></span></button>
             </div>
         </div>
     </nav>
+
+    <div class="menu" id="mobile-menu" aria-hidden="true">
+        <ul class="menu-links">
+            <li><a href="#works" style="--i:0"><span>01</span>Work</a></li>
+            <li><a href="#skills" style="--i:1"><span>02</span>Skills</a></li>
+            <li><a href="#experience" style="--i:2"><span>03</span>Experience</a></li>
+            <li><a href="#contact" style="--i:3"><span>04</span>Contact</a></li>
+        </ul>
+        <div class="menu-foot" style="--i:4">
+            <a href="files/Resume_Achyuth.pdf" class="btn-cv" download>Download CV</a>
+            <a href="mailto:achyuthunni@gmail.com" class="menu-mail">achyuthunni@gmail.com</a>
+        </div>
+    </div>
 
     <main class="wrapper" id="top">
         <header class="hero" id="hero">

@@ -745,6 +745,18 @@ document.addEventListener('DOMContentLoaded', () => {
     onScroll(() => scrollTopBtn.classList.toggle('show', window.scrollY > 600));
     scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+    const navToggle = $('nav-toggle'), menu = $('mobile-menu');
+    const setMenu = (open) => {
+        document.body.classList.toggle('menu-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
+        menu.setAttribute('aria-hidden', String(!open));
+        document.body.style.overflow = open ? 'hidden' : '';
+    };
+    navToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape' && document.body.classList.contains('menu-open')) setMenu(false); });
+    window.addEventListener('resize', () => { if (window.innerWidth > 768 && document.body.classList.contains('menu-open')) setMenu(false); });
+
     const themeBtn = $('theme-toggle');
     themeBtn.addEventListener('click', () => {
         document.body.classList.toggle('light');

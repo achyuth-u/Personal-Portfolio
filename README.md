@@ -84,6 +84,7 @@ The full-bleed blue footer — "Questions, ideas, a project in mind? Get in touc
 | **Custom cursor** | Pointer-following dot with inertial chase; expands to a "VIEW" label over works and the featured window |
 | **Lightbox** | Captions, counter, keyboard nav (← → Esc), swipe on touch screens, swap animation |
 | **Typing effect** | Cycles through "Graphic Designer", "Full Stack Developer", "Visual Storyteller" |
+| **Mobile menu** | Hamburger in the nav capsule (≤768px) opens a full-screen menu — numbered links stagger in, CV + email below; closes on link tap, Esc or resize |
 | **Reduced motion** | Respects `prefers-reduced-motion` — letters appear instantly, marquees and reveals switch off |
 | **Statement fill** | The intro paragraph lights up word by word as you scroll through it |
 
