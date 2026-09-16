@@ -39,7 +39,7 @@ A square blue dot after the final H stretches into a scroll-scrubbed band the mo
 3. **Lands** on a square dot just before the giant "Craft" title, then **reels itself in** as you keep scrolling — the hero dot in reverse — until only the dot remains.
 4. **Carries on** from that dot straight down the margin: it grows out of the dot, pauses as a dot beside each section number (03, 04, 05) and finally comes to rest as a dot just above the footer.
 
-Everything reverses on the way back up. On phones and tablets the same ribbon runs down the page margins (the works are a single column there, so it snakes across the row gaps) and the section block is nudged inward just enough to give it a lane.
+Everything reverses on the way back up. On phones the ribbon hugs the right edge — dead straight from the hero dot through the featured window — and only bends where it crosses between the posters, ending in the left margin; on tablets it zig-zags between the columns and the page margins. The section block is nudged inward just enough to give the line a lane.
 
 **How it works:** An SVG `<path>` is computed at runtime from the actual masonry geometry. `stroke-dasharray` + `stroke-dashoffset` are driven by an effort-mapped, smoothed scroll value — vertical travel counts in full, horizontal zips at 7 %. The reel-in phase sweeps a second dash window from the hero end toward the dot.
 
@@ -82,7 +82,7 @@ The full-bleed blue footer — "Questions, ideas, a project in mind? Get in touc
 | **Grainy gradient** | One `radial-gradient` behind the hero + animated SVG `feTurbulence` film grain (`mix-blend-mode: overlay`) |
 | **Dark / light theme** | CSS custom properties toggled on `body.light` — one palette per mode, top to bottom |
 | **Custom cursor** | Pointer-following dot with inertial chase; expands to a "VIEW" label over works and the featured window |
-| **Lightbox** | Captions, counter, keyboard nav (← → Esc), swap animation |
+| **Lightbox** | Captions, counter, keyboard nav (← → Esc), swipe on touch screens, swap animation |
 | **Typing effect** | Cycles through "Graphic Designer", "Full Stack Developer", "Visual Storyteller" |
 | **Reduced motion** | Respects `prefers-reduced-motion` — letters appear instantly, marquees and reveals switch off |
 | **Statement fill** | The intro paragraph lights up word by word as you scroll through it |

@@ -203,28 +203,18 @@ function initRibbon() {
         if (W < 320) {
             svgEl.classList.remove('on'); win.style.width = ''; win.style.clipPath = ''; geo = null;
             inlet.style.display = 'none'; giant.style.paddingLeft = ''; inverted.querySelector('.inner').style.paddingLeft = '';
+            heroSlot.style.transform = ''; win.style.marginLeft = '';
             return;
         }
         svgEl.classList.add('on'); inlet.style.display = '';
+        svgEl.setAttribute('height', 0);
         const H = document.documentElement.scrollHeight, vh = window.innerHeight;
         svgEl.setAttribute('width', W); svgEl.setAttribute('height', H); svgEl.setAttribute('viewBox', `0 0 ${W} ${H}`);
         const rand = seededRandom(RIB_SEED);
 
-        const hr = heroSlot.getBoundingClientRect();
         const F = parseFloat(getComputedStyle(heroSlot).fontSize);
         const dotSize = F * 0.19, dotGap = F * 0.07;
-        const xDot = hr.right + dotGap + dotSize / 2;
-        const startY = hr.bottom + window.scrollY - dotSize;
         const contentLeft = wrapper.getBoundingClientRect().left + parseFloat(getComputedStyle(wrapper).paddingLeft);
-
-        win.style.width = `${Math.round(xDot + dotSize / 2 - contentLeft)}px`;
-        const wr = win.getBoundingClientRect();
-        const winTop = wr.top + window.scrollY, winBottom = wr.bottom + window.scrollY, winRight = wr.right;
-        const winH = winBottom - winTop;
-
-        tail.setAttribute('d', `M${xDot.toFixed(1)} ${startY.toFixed(1)} V${winTop + 30}`);
-        tail.style.strokeWidth = dotSize;
-
         const section = grid.closest('.section');
         const secTop = docY(section), secLeft = section.getBoundingClientRect().left;
         const gcs = getComputedStyle(grid);
@@ -236,7 +226,31 @@ function initRibbon() {
             top: secTop + t.offsetTop, bottom: secTop + t.offsetTop + t.offsetHeight,
         }));
         const gridTop = Math.min(...tiles.map(t => t.top)), gridBottom = Math.max(...tiles.map(t => t.bottom));
-        const bandW = Math.min(dotSize, cols > 1 ? gap - 12 : dotSize);
+        const bandW = Math.min(dotSize, cols > 1 ? gap - 12 : dotSize, Math.max(10, Math.min(gridLeft, W - gridRight) - 6));
+        const edgeX = W - gridRight >= bandW + 6 ? gridRight + (W - gridRight) / 2 : null;
+        const mobile = cols === 1 && edgeX !== null;
+
+        const prevShift = heroSlot.style.transform;
+        heroSlot.style.transform = '';
+        let hr = heroSlot.getBoundingClientRect();
+        let xDot = hr.right + dotGap + dotSize / 2;
+        if (mobile && Math.abs(edgeX - xDot) <= 60) {
+            heroSlot.style.transform = `translateX(${(edgeX - xDot).toFixed(1)}px)`;
+            hr = heroSlot.getBoundingClientRect();
+            xDot = hr.right + dotGap + dotSize / 2;
+        }
+        if (heroSlot.style.transform !== prevShift) setTimeout(() => window.dispatchEvent(new Event('resize')), 0);
+        const startY = hr.bottom + window.scrollY - dotSize;
+
+        const flush = mobile && Math.abs(xDot - edgeX) < 1;
+        win.style.marginLeft = flush ? `${(4 - contentLeft).toFixed(1)}px` : '';
+        win.style.width = `${Math.round(xDot + dotSize / 2 - (flush ? 4 : contentLeft))}px`;
+        const wr = win.getBoundingClientRect();
+        const winTop = wr.top + window.scrollY, winBottom = wr.bottom + window.scrollY, winRight = wr.right;
+        const winH = winBottom - winTop;
+
+        tail.setAttribute('d', `M${xDot.toFixed(1)} ${startY.toFixed(1)} V${winTop + 30}`);
+        tail.style.strokeWidth = dotSize;
 
         const inner = inverted.querySelector('.inner');
         inner.style.paddingLeft = '';
@@ -260,7 +274,7 @@ function initRibbon() {
         const chan = {};
         for (let c = 1; c < cols; c++) chan[c] = gridLeft + c * colW + (c - 0.5) * gap;
         if (gridLeft >= bandW + 6) chan[0] = gridLeft >= 90 ? gridLeft - 46 : gridLeft / 2;
-        if (W - gridRight >= bandW + 6) chan[cols] = gridLeft >= 90 ? gridRight + 46 : gridRight + (W - gridRight) / 2;
+        if (edgeX !== null) chan[cols] = gridLeft >= 90 ? gridRight + 46 : (flush ? xDot : edgeX);
         if (chan[0] !== undefined && dotX + bandW / 2 <= gridLeft - 3 && dotX - bandW / 2 >= 3) chan[0] = dotX;
         const corridors = [];
         for (let c = 0; c < cols; c++) {
@@ -295,6 +309,10 @@ function initRibbon() {
             pts.push([chan[b], pick.y], [chan[nb], pick.y]);
             b = nb; y = pick.y;
         }
+        if (mobile && b !== 0) {
+            if (pts.length >= 3) { pts.splice(-2, 2); b = 0; }
+            else if (corridors.length) { pts.push([chan[b], corridors[0].y], [chan[0], corridors[0].y]); b = 0; }
+        }
         const exitY = gridBottom + 40;
         pts.push([chan[b], exitY]);
 
@@ -311,7 +329,7 @@ function initRibbon() {
             pts.push([dotX, blockTop + 2]);
         }
 
-        const xExit = winRight - clamp((winRight - wr.left) * 0.08, bandW * 1.5, 64);
+        const xExit = flush ? xDot : winRight - clamp((winRight - wr.left) * 0.08, bandW * 1.5, 64);
         const turnStart = gridTop - 300;
         const x0 = pts[0][0];
         let d = `M${xExit.toFixed(1)} ${winBottom - 30} V${turnStart} C ${xExit.toFixed(1)} ${turnStart + 180}, ${x0.toFixed(1)} ${turnEnd - 180}, ${x0.toFixed(1)} ${turnEnd}`;
@@ -781,6 +799,16 @@ function closeLightbox() {
     setTimeout(() => { lb.style.display = 'none'; }, 350);
     document.body.style.overflow = 'auto';
 }
+(() => {
+    const lb = $('lightbox'); if (!lb) return;
+    let x0 = null;
+    lb.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', (e) => {
+        if (x0 === null) return;
+        const dx = e.changedTouches[0].clientX - x0; x0 = null;
+        if (Math.abs(dx) > 50) changeImage(dx < 0 ? 1 : -1);
+    }, { passive: true });
+})();
 document.addEventListener('keydown', (e) => {
     if ($('lightbox').style.display === 'flex') {
         if (e.key === 'ArrowRight') changeImage(1);
